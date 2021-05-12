@@ -1,15 +1,31 @@
-import { useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
-import NavBar from '../../components/NavBar/NavBar';
+import Index from '../Index/Index';
+import NavBar from '../../Components/NavBar/NavBar';
+import * as coinsAPI from '../../utilities/coins-api'
 
 import './App.css';
 
 export default function App() {
 	const [user, setUser] = useState(getUser());
+	// const [coins, setCoins] = useState([]);
+	const history = useHistory();
+
+	useEffect(() => {
+		history.push('/')
+	}, [history, user]);
+
+	// useEffect(() => {
+	// 	async function getCoins() {
+	// 		console.log('ello mate');
+	// 		const coinList = await coinsAPI.getAll();
+	// 		console.log('coinList is => ',coinList)
+	// 		setCoins(coinList)
+	// 	}
+	// 	getCoins();
+	// }, []);
 
 	return (
 		<main className='App'>
@@ -17,13 +33,10 @@ export default function App() {
 				<>
 					<NavBar user={user} setUser={setUser} />
 					<Switch>
-						<Route path='/orders/new'>
-							<NewOrderPage />
+						<Route path='/'>
+							<Index />
 						</Route>
-						<Route path='/orders'>
-							<OrderHistoryPage />
-						</Route>
-						<Redirect to='/orders' />
+						<Redirect to='/' />
 					</Switch>
 				</>
 			) : (
