@@ -10,10 +10,24 @@ module.exports = {
 
 async function getAll() {
     const response = await fetch(
-        `${rootUrl}coins/markets?vs_currency=usd&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h`
+        `${rootUrl}coins/markets?vs_currency=usd&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C14d`
     )
     const coins = await response.json();
-    return coins
+    const coinList = coins.map((e) => {
+        return {
+            'id': e.id,
+            'ticker': e.symbol,
+            'name': e.name,
+            'price': e.current_price,
+            'market_cap': e.market_cap,
+            'rank': e.market_cap_rank,
+            'price1h': e.price_change_percentage_1h_in_currency,
+            'price24h': e.price_change_percentage_24h_in_currency,
+            'price7d': e.price_change_percentage_7d_in_currency,
+            'price14d': e.price_change_percentage_14d_in_currency
+        }
+    })
+    return coinList
 }
 
 const coin = [

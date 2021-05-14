@@ -13,9 +13,9 @@ export default function App() {
 	// const [coins, setCoins] = useState([]);
 	const history = useHistory();
 
-	useEffect(() => {
-		history.push('/')
-	}, [history, user]);
+	// useEffect(() => {
+	// 	history.push('/')
+	// }, [history, user]);
 
 	// useEffect(() => {
 	// 	async function getCoins() {
