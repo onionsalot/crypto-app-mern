@@ -14,7 +14,6 @@ export default function Index() {
 
     useEffect(() => {
 		async function getCoins() {
-			console.log('ello mate');
 			setLoading(true);
 			const coinList = await coinsAPI.getAll();
 			console.log('coinList is => ',coinList)

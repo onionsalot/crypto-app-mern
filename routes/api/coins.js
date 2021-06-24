@@ -5,5 +5,6 @@ const coinsCtrl = require('../../controllers/api/coins');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.get('/', coinsCtrl.index);
+router.get('/search', coinsCtrl.search);
 
 module.exports = router;

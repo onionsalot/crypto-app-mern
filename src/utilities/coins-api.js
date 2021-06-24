@@ -5,3 +5,7 @@ const BASE_URL = '/api/coins'
 export function getAll() {
     return sendRequest(BASE_URL)
 }
+
+export function getSearch() {
+    return sendRequest(`${BASE_URL}/search`)
+}

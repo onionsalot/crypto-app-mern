@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     getAll,
-
+    getSearch
   };
   
 
@@ -25,6 +25,22 @@ async function getAll() {
             'price24h': e.price_change_percentage_24h_in_currency,
             'price7d': e.price_change_percentage_7d_in_currency,
             'price14d': e.price_change_percentage_14d_in_currency
+        }
+    })
+    return coinList
+}
+
+
+async function getSearch() {
+    const response = await fetch(
+        `${rootUrl}coins/list`
+    )
+    const coins = await response.json();
+    const coinList = coins.map((e) => {
+        return {
+            'value': e.id,
+            'symbol': e.symbol,
+            'label': e.name
         }
     })
     return coinList

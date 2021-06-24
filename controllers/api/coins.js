@@ -2,10 +2,15 @@ const Coin = require("../../models/coin");
 
 module.exports = {
   index,
+  search
 };
 
 async function index(req, res, next) {
   const coinList = await Coin.getAll();
-  console.log(coinList)
+  res.json(coinList)
+}
+
+async function search(req, res, next) {
+  const coinList = await Coin.getSearch();
   res.json(coinList)
 }
