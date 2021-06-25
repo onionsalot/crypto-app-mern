@@ -30,6 +30,7 @@ app.listen(port, function () {
 // app.use('/api/users', require('./routes/api/users'))
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/coins', require('./routes/api/coins'));
+app.use('/api/portfolios', require('./routes/api/portfolios'))
 
 // The following "catch all" route (note the *) is necessary
 app.get('/*', function (req, res) {
