@@ -4,7 +4,8 @@ const fetch = require('node-fetch');
 
 module.exports = {
     getAll,
-    getSearch
+    getSearch,
+    getOne,
   };
   
 
@@ -44,6 +45,15 @@ async function getSearch() {
         }
     })
     return coinList
+}
+
+async function getOne(id) {
+    console.log(id)
+    const response = await fetch(
+        `${rootUrl}coins/${id}?localization=false&community_data=false&developer_data=false`
+    )
+    const coin = await response.json();
+    return coin
 }
 
 const coin = [

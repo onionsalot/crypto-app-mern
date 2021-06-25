@@ -1,9 +1,13 @@
 import '../CoinList/CoinList.css'
+import { Link } from "react-router-dom"
 
 export default function CoinListItem({coin}) {
+  const url = `details/${coin.id}/`
 	return (
-      <tr>
-        <td className="coin-name">{coin.rank}  {'   '}  {coin.name}</td>
+    <tr>
+        <Link to={url}>
+        <td className="coin-name">{coin.rank}  {'   '} {coin.id} {coin.name}</td>
+    </Link>
         <td> {coin.ticker} </td>
         <td> {coin.price.toLocaleString()} </td>
         <td> {coin.market_cap.toLocaleString()} </td>

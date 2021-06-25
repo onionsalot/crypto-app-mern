@@ -9,3 +9,7 @@ export function getAll() {
 export function getSearch() {
     return sendRequest(`${BASE_URL}/search`)
 }
+
+export function getOne(id) {
+    return sendRequest(`${BASE_URL}/${id}`)
+}

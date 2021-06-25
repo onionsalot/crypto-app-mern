@@ -4,6 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import Index from '../Index/Index';
 import NavBar from '../../Components/NavBar/NavBar';
+import CoinDetailsPage from '../CoinDetailsPage/CoinDetailsPage'
 import * as coinsAPI from '../../utilities/coins-api'
 
 import './App.css';
@@ -33,8 +34,11 @@ export default function App() {
 				<>
 					<NavBar user={user} setUser={setUser} />
 					<Switch>
-						<Route path='/'>
+						<Route exact path="/">
 							<Index />
+						</Route>
+						<Route exact path='/details/:id'>
+							<CoinDetailsPage />
 						</Route>
 						<Redirect to='/' />
 					</Switch>
