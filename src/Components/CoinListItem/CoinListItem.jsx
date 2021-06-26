@@ -6,7 +6,7 @@ export default function CoinListItem({coin}) {
 	return (
     <tr>
         <Link to={url}>
-        <td className="coin-name">{coin.rank}  {'   '} {coin.id} {coin.name}</td>
+        <td className="coin-name">{coin.rank}  {'   '} {coin.name}</td>
     </Link>
         <td> {coin.ticker} </td>
         <td> {coin.price.toLocaleString()} </td>

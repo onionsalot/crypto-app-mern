@@ -5,6 +5,7 @@ import AuthPage from '../AuthPage/AuthPage';
 import Index from '../Index/Index';
 import NavBar from '../../Components/NavBar/NavBar';
 import CoinDetailsPage from '../CoinDetailsPage/CoinDetailsPage'
+import PortfolioPage from '../PortolioPage/PortfolioPage'
 import * as coinsAPI from '../../utilities/coins-api'
 
 import './App.css';
@@ -39,6 +40,9 @@ export default function App() {
 						</Route>
 						<Route exact path='/details/:id'>
 							<CoinDetailsPage />
+						</Route>
+						<Route exact path='/portfolio'>
+							<PortfolioPage user={user}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>

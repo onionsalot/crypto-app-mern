@@ -18,5 +18,6 @@ async function search(req, res, next) {
 
 async function getOne(req, res, next) {
   const coin = await Coin.getOne(req.params.id);
-  res.json(coin)
+  res.json(coin)  
+  
 }

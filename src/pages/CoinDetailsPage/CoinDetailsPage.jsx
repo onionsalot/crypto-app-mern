@@ -8,7 +8,6 @@ export default function CoinDetailsPage() {
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
 
-    console.log(id)
     useEffect(() => {
         async function getCoin() {
 			setLoading(true);
@@ -21,6 +20,6 @@ export default function CoinDetailsPage() {
 	}, [id]);
 
     return(
-        <h1></h1>
+        <h1>{coin.name}</h1>
     )
 }
