@@ -7,7 +7,6 @@ import NavBar from '../../Components/NavBar/NavBar';
 import CoinDetailsPage from '../CoinDetailsPage/CoinDetailsPage'
 import PortfolioPage from '../PortolioPage/PortfolioPage'
 import * as coinsAPI from '../../utilities/coins-api'
-
 import './App.css';
 import PortfolioDetailsPage from '../PortfolioDetailsPage/PortfolioDetailsPage';
 
@@ -43,7 +42,7 @@ export default function App() {
 							<CoinDetailsPage />
 						</Route>
 						<Route exact path='/portfolio'>
-							<PortfolioPage user={user}/>
+							<PortfolioPage user={user} />
 						</Route>
 						<Route exact path='/portfolio/:id'>
 							<PortfolioDetailsPage user={user}/>

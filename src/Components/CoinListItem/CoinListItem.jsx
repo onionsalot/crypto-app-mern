@@ -1,13 +1,12 @@
 import '../CoinList/CoinList.css'
 import { Link } from "react-router-dom"
+import star from "../../images/star.png"
 
 export default function CoinListItem({coin}) {
   const url = `details/${coin.id}/`
 	return (
     <tr>
-        <Link to={url}>
-        <td className="coin-name">{coin.rank}  {'   '} {coin.name}</td>
-    </Link>
+        <td className="coin-name">{coin.rank}<img src={star} alt="fav" className="favicon"/>  {'   '} <Link to={url}>{coin.name}</Link></td>
         <td> {coin.ticker} </td>
         <td> {coin.price.toLocaleString()} </td>
         <td> {coin.market_cap.toLocaleString()} </td>

@@ -33,7 +33,7 @@ export default function MyModal(props) {
             )}
         </Modal.Body>
         <Modal.Footer>
-            <Button type="submit">Add</Button>
+            <Button onClick={props.onHide} type="submit">Add</Button>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
         </form>

@@ -3,7 +3,6 @@ import Table from "react-bootstrap/Table";
 import './CoinList.css';
 
 export default function CoinList({ coins, loading }) {
-  console.log(coins);
   const coinItem = coins.map((coin) => <CoinListItem coin={coin} />);
   if (loading === true) {
     return <div>Loading ...</div>

@@ -36,7 +36,7 @@ export default function PortfolioPage() {
         e.preventDefault();
 
         const portfolioList = await portfoliosAPI.create(form);
-        console.log(portfolioList)
+        setPortfolios([...portfolios, portfolioList])
       }
 
     return(

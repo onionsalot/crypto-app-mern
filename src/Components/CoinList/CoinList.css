@@ -22,3 +22,8 @@ th {
   z-index: 1;
   min-width: 150px; /* How can I make this dynamic? */
 }
+
+.favicon {
+  height: 30px;
+  width: 30px;
+}
