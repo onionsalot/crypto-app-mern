@@ -5,11 +5,22 @@ module.exports = {
   create,
   update,
   addCoin,
+  getOne,
 };
 
 async function index(req, res, next) {
-  const coinList = await Portfolio.find({});
-  res.json(coinList)
+  const portfolioList = await Portfolio.find({user: req.user._id});
+  res.json(portfolioList)
+}
+
+async function getOne(req, res, next) {
+  const portfolio = await Portfolio.findById(req.params.id)
+  console.log(portfolio.user, req.user._id)
+  if (String(portfolio.user) !== String(req.user._id)) {
+    // check if current logged in user has access to this item..
+    return res.json({error: "invalid user"})
+  }
+  res.json(portfolio)
 }
 
 async function create(req, res, next) {

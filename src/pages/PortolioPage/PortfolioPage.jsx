@@ -45,7 +45,7 @@ export default function PortfolioPage() {
             <nav>
             <Button variant="primary" onClick={() => setModalShow(true)}>+</Button>
             </nav>
-            <PortfolioList />
+            <PortfolioList portfolios={portfolios}/>
 
 
       <MyModal

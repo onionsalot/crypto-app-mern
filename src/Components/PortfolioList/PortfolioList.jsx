@@ -2,14 +2,17 @@ import { useState, useEffect } from 'react'
 import PortfolioListItem from '../PortfolioListItem/PortfolioListItem'
 
 
-export default function PortfolioList() {
-    const [portfolios, setPortfolios]= useState([])
-    const [modalShow, setModalShow] = useState(false);
-
+export default function PortfolioList({ portfolios }) {
+    const [displayedPortfolios, setDisplayedPortfolios] = useState([])
+    useEffect(() => {
+        setDisplayedPortfolios(portfolios.map((portfolio) => {
+            return <PortfolioListItem portfolio={portfolio} />
+        }))
+    }, [portfolios])
 
     return(
         <>
-
+            {displayedPortfolios}
         </>
     )
 }

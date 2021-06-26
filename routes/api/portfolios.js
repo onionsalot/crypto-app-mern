@@ -5,6 +5,7 @@ const portfoliosCtrl = require('../../controllers/api/portfolios');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.get('/', ensureLoggedIn, portfoliosCtrl.index);
+router.get('/:id', ensureLoggedIn, portfoliosCtrl.getOne)
 router.post('/create', ensureLoggedIn, portfoliosCtrl.create)
 router.put('/update/:id', ensureLoggedIn, portfoliosCtrl.update)
 router.put('/:id/add/:cid', ensureLoggedIn, portfoliosCtrl.addCoin)
