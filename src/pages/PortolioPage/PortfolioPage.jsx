@@ -29,7 +29,6 @@ export default function PortfolioPage() {
 
     function handleChange(e) {
         setForm({...form, [e.target.name]: e.target.value})
-        console.log(form.name)
       }
     async function handleSubmit(e) {
         console.log('bloop')

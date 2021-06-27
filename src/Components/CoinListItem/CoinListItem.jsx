@@ -4,9 +4,10 @@ import star from "../../images/star.png"
 
 export default function CoinListItem({coin}) {
   const url = `details/${coin.id}/`
+  const fav = `portfolio/add/${coin.id}`
 	return (
     <tr>
-        <td className="coin-name">{coin.rank}<img src={star} alt="fav" className="favicon"/>  {'   '} <Link to={url}>{coin.name}</Link></td>
+        <td className="coin-name">{coin.rank}<Link to={fav}><img src={star} alt="fav" className="favicon"/></Link>  {'   '} <Link to={url}>{coin.name}</Link></td>
         <td> {coin.ticker} </td>
         <td> {coin.price.toLocaleString()} </td>
         <td> {coin.market_cap.toLocaleString()} </td>

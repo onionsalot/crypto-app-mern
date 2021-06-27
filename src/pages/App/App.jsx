@@ -9,6 +9,7 @@ import PortfolioPage from '../PortolioPage/PortfolioPage'
 import * as coinsAPI from '../../utilities/coins-api'
 import './App.css';
 import PortfolioDetailsPage from '../PortfolioDetailsPage/PortfolioDetailsPage';
+import PortfolioAddPage from '../PortfolioAddPage/PortfolioAddPage';
 
 export default function App() {
 	const [user, setUser] = useState(getUser());
@@ -46,6 +47,9 @@ export default function App() {
 						</Route>
 						<Route exact path='/portfolio/:id'>
 							<PortfolioDetailsPage user={user}/>
+						</Route>
+						<Route exact path='/portfolio/add/:id'>
+							<PortfolioAddPage user={user}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>

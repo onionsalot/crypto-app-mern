@@ -28,6 +28,10 @@ async function create(req, res, next) {
     "user" : req.user._id,
     ...req.body
   }
+  const portfolio= await Portfolio.find({user: req.user._id});
+  if (portfolio.length === 0) {
+    data.isDefault = true
+  }
   console.log(data)
   const createdPortfolio = await Portfolio.create(data);
   res.json(createdPortfolio)
@@ -46,10 +50,14 @@ async function addCoin(req, res, next) {
     // Currently pushes to coin array but doesn't respond with updated info...
     const id = req.params.id;
     const cid = req.params.cid;
-    const addedCoin = await Portfolio.findById(id, async function(err, portfolio) {
-      portfolio.coins.push(cid);
-      portfolio.save();
-    }).then(response => res.json(response))
+    // const addedCoin = await Portfolio.findById(id, async function(err, portfolio) {
+    //   portfolio.coins= {}
+    //   console.log(portfolio.coins)
+    //   portfolio.save();
+    // }).then(response => res.json(response))
+    const test = `coins.${cid}`
+    const addedCoin = await Portfolio.updateOne({"_id": id}, {$set: {[test]: Number(req.body.quantity)}})
+    res.json(addedCoin)
   } catch(err) {
     res.send(err)
   }

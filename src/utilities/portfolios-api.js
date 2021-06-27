@@ -13,3 +13,7 @@ export function getOne(id) {
 export function create(data) {
     return sendRequest(`${BASE_URL}/create`, 'POST', data)
 }
+
+export function addCoin(data, cid) {
+    return sendRequest(`${BASE_URL}/${data.id}/add/${cid}`, 'PUT', data)
+}
