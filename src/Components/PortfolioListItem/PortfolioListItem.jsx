@@ -7,7 +7,10 @@ export default function PortfolioListItem({portfolio}) {
     return(
         <>
             <Col>{portfolio.isDefault? "true":"false"}</Col>
-            <Col><Link to={url}>{portfolio.name}</Link></Col>
+            <Col><Link to={{
+            pathname: url,
+            state: { portfolio },
+          }}>{portfolio.name}</Link></Col>
             <Col>TOTAL</Col>
             <Col>DELETE BUTTON</Col>
         </>
