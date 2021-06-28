@@ -1,4 +1,5 @@
 const Portfolio = require("../../models/portfolio");
+const Coin = require("../../models/coin")
 
 module.exports = {
   index,
@@ -51,12 +52,15 @@ async function addCoin(req, res, next) {
     const id = req.params.id;
     const cid = req.params.cid;
     // const addedCoin = await Portfolio.findById(id, async function(err, portfolio) {
-    //   portfolio.coins= {}
+    //   portfolio.coins= []
     //   console.log(portfolio.coins)
     //   portfolio.save();
     // }).then(response => res.json(response))
     const test = `coins.${cid}`
-    const addedCoin = await Portfolio.updateOne({"_id": id}, {$set: {[test]: Number(req.body.quantity)}})
+    // const addedCoin = await Portfolio.updateOne({"_id": id}, {$push: {"coins": {"id": cid, "quantity":req.body.quantity}}})
+    const addedCoin = await Portfolio.updateOne({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}})
+    const addedQuantity = await Portfolio.updateOne({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}})
+    console.log(addedCoin, addedQuantity)
     res.json(addedCoin)
   } catch(err) {
     res.send(err)

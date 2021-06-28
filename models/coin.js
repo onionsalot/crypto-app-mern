@@ -56,6 +56,17 @@ async function getOne(id) {
     return coin
 }
 
+async function getPrice(arr) {
+    console.log(arr)
+    try {
+        const response = await fetch(
+            
+        )
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 const coin = [
     {ticker:"btc", name:"bitcoin", price:10000},
     {ticker:"eth", name:"ethereum", price:10000},

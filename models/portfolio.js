@@ -9,8 +9,8 @@ const portfolioSchema = new Schema(
 			required: true,
 		},
 		coins: {
-			type: Object,
-            default: {},
+			type: Array,
+            default: [],
 		},
 		isDefault: {
 			type: Boolean,
