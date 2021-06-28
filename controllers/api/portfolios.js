@@ -11,6 +11,18 @@ module.exports = {
 
 async function index(req, res, next) {
   const portfolioList = await Portfolio.find({user: req.user._id});
+  const arr = []
+  portfolioList.forEach((portfolio, idx) =>
+    portfolio.coins.forEach((coin, idx) =>
+      arr.push(coin.id)))
+  const uniqueArray = [...new Set(arr)];//convert array of dupes to a set which implicitly removes dupes then convert back to array.
+  const coinList = await Coin.getMultiplePrice(uniqueArray.join('%2C'))
+  portfolioList.forEach((portfolio, idx1) =>
+    portfolio.coins.forEach((coin, idx2) =>
+      portfolioList[idx1].coins[idx2] = {
+        ...coin,
+        ...coinList[`${coin.id}`]
+      }))
   res.json(portfolioList)
 }
 

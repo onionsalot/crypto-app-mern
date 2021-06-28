@@ -6,6 +6,7 @@ module.exports = {
     getAll,
     getSearch,
     getOne,
+    getMultiplePrice,
   };
   
 
@@ -56,12 +57,13 @@ async function getOne(id) {
     return coin
 }
 
-async function getPrice(arr) {
-    console.log(arr)
+async function getMultiplePrice(arr) {
     try {
         const response = await fetch(
-            
+            `${rootUrl}simple/price?ids=${arr}&vs_currencies=usd&include_market_cap=false&include_24hr_vol=false&include_24hr_change=true&include_last_updated_at=false`
         )
+        const coinList = await response.json();
+        return coinList
     } catch (err) {
         console.log(err)
     }

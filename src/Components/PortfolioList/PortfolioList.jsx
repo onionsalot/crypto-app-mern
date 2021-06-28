@@ -7,8 +7,8 @@ import Col from 'react-bootstrap/Col'
 export default function PortfolioList({ portfolios }) {
     const [displayedPortfolios, setDisplayedPortfolios] = useState([])
     useEffect(() => {
-        setDisplayedPortfolios(portfolios.map((portfolio) => {
-            return <Row><PortfolioListItem portfolio={portfolio} /></Row>
+        setDisplayedPortfolios(portfolios.map((portfolio, key) => {
+            return <Row key={key} ><PortfolioListItem portfolio={portfolio} /></Row>
         }))
     }, [portfolios])
 
