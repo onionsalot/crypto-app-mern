@@ -69,7 +69,6 @@ async function addCoin(req, res, next) {
     //   portfolio.save();
     // }).then(response => res.json(response))
     const test = `coins.${cid}`
-    // const addedCoin = await Portfolio.updateOne({"_id": id}, {$push: {"coins": {"id": cid, "quantity":req.body.quantity}}})
     const addedCoin = await Portfolio.updateOne({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}})
     const addedQuantity = await Portfolio.updateOne({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}})
     console.log(addedCoin, addedQuantity)
