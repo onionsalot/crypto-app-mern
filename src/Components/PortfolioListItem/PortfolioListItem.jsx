@@ -15,10 +15,11 @@ export default function PortfolioListItem({portfolio, handleChange, isDefault, h
     return(
         <>
             <Col><input type="radio" onChange={handleChange} name="isDefault" value={portfolio._id} checked={portfolio._id === isDefault? true:false}/></Col>
-            <Col><Link to={{
+            <Col><Link to={url}>{portfolio.name}</Link></Col>
+            {/* <Col><Link to={{
             pathname: url,
             state: { portfolio },
-          }}>{portfolio.name}</Link></Col>
+          }}>{portfolio.name}</Link></Col> */}
             <Col>{total}</Col>
             <Col><form autoComplete="off" onSubmit={handleDelete}>
                 <input hidden name="id" value={portfolio._id} />

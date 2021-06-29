@@ -36,6 +36,17 @@ async function getOne(req, res, next) {
     // check if current logged in user has access to this item..
     return res.json({error: "invalid user"})
   }
+  const arr = []
+    portfolio.coins.forEach((coin, idx) => arr.push(coin.id))
+    const uniqueArray = [...new Set(arr)];//convert array of dupes to a set which implicitly removes dupes then convert back to array.
+    if (uniqueArray.length !== 0) {
+      const coinList = await Coin.getMultiplePrice(uniqueArray.join('%2C'))
+      portfolio.coins.forEach((coin, idx) =>
+        portfolio.coins[idx] = {
+          ...coin,
+          ...coinList[`${coin.id}`]
+      })
+    }
   res.json(portfolio)
 }
 
@@ -76,7 +87,7 @@ async function addCoin(req, res, next) {
     const addedCoin = await Portfolio.findOneAndUpdate({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}},{ returnOriginal: false })
     const addedQuantity = await Portfolio.findOneAndUpdate({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}},{ returnOriginal: false })
     console.log(addedQuantity.coins.find(e => e.id === cid))
-    res.json(addedQuantity.coins.find(e => e.id === cid))
+    res.json(addedQuantity)
   } catch(err) {
     res.send(err)
   }
