@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import Col from 'react-bootstrap/Col'
 import { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap'
 
-
-export default function PortfolioListItem({portfolio, handleChange, isDefault}) {
+export default function PortfolioListItem({portfolio, handleChange, isDefault, handleDelete}) {
     const [total, setTotal] = useState([])
     const url= `/portfolio/${portfolio._id}`
     useEffect(() => {
@@ -20,7 +20,10 @@ export default function PortfolioListItem({portfolio, handleChange, isDefault}) 
             state: { portfolio },
           }}>{portfolio.name}</Link></Col>
             <Col>{total}</Col>
-            <Col>DELETE BUTTON</Col>
+            <Col><form autoComplete="off" onSubmit={handleDelete}>
+                <input hidden name="id" value={portfolio._id} />
+                <Button type="submit">Delete</Button>
+                </form></Col>
         </>
     )
 }

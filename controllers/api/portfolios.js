@@ -7,6 +7,7 @@ module.exports = {
   update,
   addCoin,
   getOne,
+  deleteOne,
 };
 
 async function index(req, res, next) {
@@ -16,13 +17,15 @@ async function index(req, res, next) {
     portfolio.coins.forEach((coin, idx) =>
       arr.push(coin.id)))
   const uniqueArray = [...new Set(arr)];//convert array of dupes to a set which implicitly removes dupes then convert back to array.
-  const coinList = await Coin.getMultiplePrice(uniqueArray.join('%2C'))
-  portfolioList.forEach((portfolio, idx1) =>
-    portfolio.coins.forEach((coin, idx2) =>
-      portfolioList[idx1].coins[idx2] = {
-        ...coin,
-        ...coinList[`${coin.id}`]
-      }))
+  if (uniqueArray.length !== 0) {
+    const coinList = await Coin.getMultiplePrice(uniqueArray.join('%2C'))
+    portfolioList.forEach((portfolio, idx1) =>
+      portfolio.coins.forEach((coin, idx2) =>
+        portfolioList[idx1].coins[idx2] = {
+          ...coin,
+          ...coinList[`${coin.id}`]
+        }))
+  }
   res.json(portfolioList)
 }
 
@@ -74,6 +77,16 @@ async function addCoin(req, res, next) {
     const addedQuantity = await Portfolio.updateOne({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}})
     console.log(addedCoin, addedQuantity)
     res.json(addedCoin)
+  } catch(err) {
+    res.send(err)
+  }
+}
+
+async function deleteOne(req, res, next) {
+  try{
+    const id = req.params.id;
+    const removedPortfolio = await Portfolio.findByIdAndRemove(id)
+    console.log('removed portfolio =>', removedPortfolio)
   } catch(err) {
     res.send(err)
   }

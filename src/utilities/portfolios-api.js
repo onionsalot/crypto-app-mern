@@ -20,5 +20,8 @@ export function addCoin(data, cid) {
 
 export function update(data, id) {
     return sendRequest(`${BASE_URL}/update/${id}`, 'PUT', data)
+}
 
+export function deleteOne(id) {
+    return sendRequest(`${BASE_URL}/delete/${id}`, 'DELETE')
 }

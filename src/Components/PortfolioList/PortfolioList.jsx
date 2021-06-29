@@ -16,7 +16,7 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
       portfolios.map((portfolio, key) => {
         return (
           <Row key={key}>
-            <PortfolioListItem portfolio={portfolio} handleChange={handleChange} isDefault={isDefault}/>
+            <PortfolioListItem portfolio={portfolio} handleChange={handleChange} isDefault={isDefault} handleDelete={handleDelete}/>
           </Row>
         );
       })
@@ -37,10 +37,16 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
         isDefault: true,
     }
 
-    const portfolioList = await portfoliosAPI.update(data, isDefault);
-    console.log(portfolioList)
+    const update = await portfoliosAPI.update(data, isDefault);
+    console.log(update)
     // setPortfolios([...portfolios, portfolioList])
   }
+
+  async function handleDelete(e) {
+    console.log('bloop')
+    e.preventDefault();
+    const deletedPortfolio = await portfoliosAPI.deleteOne(e.target.id.value)
+    }
 
   return (
     <>

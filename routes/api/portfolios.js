@@ -9,5 +9,6 @@ router.get('/:id', ensureLoggedIn, portfoliosCtrl.getOne)
 router.post('/create', ensureLoggedIn, portfoliosCtrl.create)
 router.put('/update/:id', ensureLoggedIn, portfoliosCtrl.update)
 router.put('/:id/add/:cid', ensureLoggedIn, portfoliosCtrl.addCoin)
+router.delete('/delete/:id', ensureLoggedIn, portfoliosCtrl.deleteOne)
 
 module.exports = router;
