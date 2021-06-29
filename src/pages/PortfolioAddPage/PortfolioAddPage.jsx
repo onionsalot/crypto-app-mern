@@ -4,10 +4,10 @@ import * as portfoliosAPI from '../../utilities/portfolios-api'
 
 export default function PortfolioAddPage() {
     const [portfolios, setPortfolios] = useState([])
-    const { id } = useParams()
+    const { id } = useParams() // coin ID
     const [form, setForm] = useState(
         {
-            id: "",
+            id: "", // portfolio ID
             quantity: 0,
         }
     )
@@ -33,7 +33,9 @@ export default function PortfolioAddPage() {
         e.preventDefault();
 
         const portfolioList = await portfoliosAPI.addCoin(form, id);
-        setPortfolios([...portfolios, portfolioList])
+        // setPortfolios([...portfolios, portfolioList])
+        console.log(portfolioList)
+
     }
 
     return(

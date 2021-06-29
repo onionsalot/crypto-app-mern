@@ -2,9 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as portfoliosAPI from "../../utilities/portfolios-api";
 import { useLocation } from "react-router";
+import PortfolioDetailsItem from "../../Components/PortfolioDetailsItem/PortfolioDetailsItem";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function PortfolioDetailsPage() {
   const [error, setError] = useState("");
@@ -13,6 +16,7 @@ export default function PortfolioDetailsPage() {
   const {
     state: { portfolio },
   } = useLocation();
+
   // useEffect(() => {
   //     async function getPortfolio() {
   //         setError("")
@@ -29,13 +33,8 @@ export default function PortfolioDetailsPage() {
       console.log(portfolio)
     setCoins(
       portfolio.coins.length
-        ? portfolio.coins.map((coin) => 
-        <Row>
-            <Col>{coin.id}</Col>
-            <Col>{coin.usd}</Col>
-            <Col>{coin.quantity}</Col>
-            <Col>{Number(coin.usd)*Number(coin.quantity)}</Col>
-        </Row>)
+        ? portfolio.coins.map((coin, idx) => 
+          <PortfolioDetailsItem key={idx} coin={coin} portfolio={portfolio}/>)
         : null
     );
 
