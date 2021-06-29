@@ -52,9 +52,10 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
   // For general purpose updating such as name. If used for updating coins, will need to replace entire array of coins(!)
-  const url = req.params.id;
+  const id = req.params.id;
   const data = req.body;
-  const updatedPortfolio = await Portfolio.findByIdAndUpdate(url, data, {new:true})
+  const many = await Portfolio.updateMany({"user": req.user._id}, {$set: {"isDefault":false}})
+  const updatedPortfolio = await Portfolio.findByIdAndUpdate(id, data, {new:true})
   res.json(updatedPortfolio)
 }
 

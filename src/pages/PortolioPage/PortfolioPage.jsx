@@ -9,8 +9,9 @@ import MyModal from '../../Components/MyModal/MyModal';
 
 export default function PortfolioPage() {
     const [portfolios, setPortfolios]= useState([])
-	const [loading, setLoading] = useState(false);
+	  const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
+    const [isDefault, setIsDefault] = useState("");
     const [form, setForm] = useState({
         name: "",
       });
@@ -18,10 +19,15 @@ export default function PortfolioPage() {
     useEffect(() => {
         async function getPortfolios() {
             setLoading(true);
-			const portfolioList = await portfoliosAPI.getAll();
-			console.log('PortfolioList is => ',portfolioList)
-			setPortfolios(portfolioList)
-			setLoading(false);
+            const portfolioList = await portfoliosAPI.getAll();
+            console.log('PortfolioList is => ',portfolioList)
+            setPortfolios(portfolioList)
+            const defaultIndex = portfolioList.findIndex((e)=>e.isDefault ===true)
+            if (defaultIndex !== -1) {
+              setIsDefault(portfolioList[defaultIndex]._id)
+            }
+            console.log('defaultindex', defaultIndex)
+            setLoading(false);
         }
         getPortfolios()
     },[])
@@ -44,7 +50,7 @@ export default function PortfolioPage() {
             <nav>
             <Button variant="primary" onClick={() => setModalShow(true)}>+</Button>
             </nav>
-            <PortfolioList portfolios={portfolios}/>
+            <PortfolioList portfolios={portfolios} isDefault={isDefault} setIsDefault={setIsDefault}/>
 
 
       <MyModal
