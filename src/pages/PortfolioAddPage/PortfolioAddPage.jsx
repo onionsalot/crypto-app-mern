@@ -7,7 +7,7 @@ export default function PortfolioAddPage() {
     const { id } = useParams() // coin ID
     const [form, setForm] = useState(
         {
-            id: "", // portfolio ID
+            id: null, // portfolio ID
             quantity: 0,
         }
     )
@@ -16,9 +16,11 @@ export default function PortfolioAddPage() {
         async function getPortfolios() {
 			const portfolioList = await portfoliosAPI.getAll();
 			console.log('PortfolioList is => ',portfolioList)
-            const defaultPortfolio = portfolioList.filter((e)=>e.isDefault === true)
-            setForm({...form, id: defaultPortfolio[0]._id})
-			setPortfolios(portfolioList)
+            if (portfolioList.length > 0) {
+                const defaultPortfolio = portfolioList.filter((e)=>e.isDefault === true)
+                setForm({...form, id: defaultPortfolio[0]._id})
+                setPortfolios(portfolioList)
+            }
         }
         getPortfolios()
     }, [])
@@ -46,7 +48,7 @@ export default function PortfolioAddPage() {
         <form autoComplete="off" onSubmit={handleSubmit}>
         <label for="id">Choose a portfolio:</label>
         <select name="id" onChange={handleChange}>
-            {portfolios.map((e)=>{return <option value={e._id} selected={e.isDefault?"selected":""}>{e.name}</option>})}
+            {portfolios.length !== 0 ? (portfolios.map((e)=>{return <option value={e._id} selected={e.isDefault?"selected":""}>{e.name}</option>})):(<option value={null} selected >NO PORTFOLIO MADE (Visit myPortfolios)</option>)}
         </select>
 
         <label>Amount Owned:</label>

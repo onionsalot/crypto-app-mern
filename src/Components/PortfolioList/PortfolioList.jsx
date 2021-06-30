@@ -58,12 +58,7 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
           <Col>Action</Col>
         </Row>
         {displayedPortfolios}
-        <Row>
-          <Col>SAVE</Col>
-          <Col></Col>
-          <Col></Col>
-          <Col></Col>
-        </Row>
+
       </Container>
 
       <MyModal

@@ -1,63 +1,68 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import * as userService from '../../utilities/users-service';
-import Async, { makeAsyncSelect } from 'react-select/async';
-import AsyncSelect from 'react-select/async';
-import * as coinsAPI from '../../utilities/coins-api'
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+import * as userService from "../../utilities/users-service";
+import AsyncSelect from "react-select/async";
+import * as coinsAPI from "../../utilities/coins-api";
+import "./NavBar.css"
 
 export default function NavBar({ user, setUser }) {
-	const [selectedOption, setSelectedOption] = useState(null)
-	const [options, setOptions] = useState([])
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [options, setOptions] = useState([]);
+  let history = useHistory();
 
-	useEffect(() => {
-		async function getCoins() {
-			const searchList = await coinsAPI.getSearch();
-			setOptions(searchList)
-		}
-		getCoins();
-	}, []);
-	function handleLogOut() {
-		// Delegate to the users-service
-		userService.logOut();
-		// Update state will also cause a re-render
-		setUser(null);
-	}
-	// const options = [
-	// 	{ value: 'chocolate', label: 'Chocolate' },
-	// 	{ value: 'strawberry', label: 'Strawberry' },
-	// 	{ value: 'vanilla', label: 'Vanilla' },
-	//   ];
-	const filterColors = (inputValue) => {
-		return options.filter(i =>
-		  i.label.toLowerCase().includes(inputValue.toLowerCase())
-		);
-	  };
+  useEffect(() => {
+    async function getCoins() {
+      const searchList = await coinsAPI.getSearch();
+      setOptions(searchList);
+    }
+    getCoins();
+  }, []);
+  function handleLogOut() {
+    // Delegate to the users-service
+    userService.logOut();
+    // Update state will also cause a re-render
+    setUser(null);
+  }
 
-	const handleSelect = inputValue =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(filterColors(inputValue));
-    }, 1000);
-  });
+  const filterColors = (inputValue) => {
+    return options.filter((i) =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
 
-	  function handleChange(evt) {
-		setSelectedOption({...selectedOption, [evt.target.name]: evt.target.value })
-	  };
+  const handleSelect = (inputValue) =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(filterColors(inputValue));
+      }, 1000);
+    });
 
-	return (
-		<nav>
-			<Link to='/'>Home</Link>
-			&nbsp; | &nbsp;
-			<Link to='/portfolio'>Portfolio</Link>
-			&nbsp; | &nbsp;
-			<span>{user.name}</span>
-			&nbsp; | &nbsp;
-			<Link to='' onClick={handleLogOut}>
-				Log Out
-			</Link>
-			&nbsp; | &nbsp;
+  function handleChange(evt) {
+	history.push(`/details/${evt.value}`);
+	console.log('bloop', evt.value)
+  }
 
-			<AsyncSelect cacheOptions defaultOptions loadOptions={handleSelect} />
-		</nav>
-	);
+  return (
+    <nav>
+      <Link to="/">Home</Link>
+      &nbsp; | &nbsp;
+      <Link to="/portfolio">Portfolio</Link>
+      &nbsp; | &nbsp;
+      <span>{user.name}</span>
+      &nbsp; | &nbsp;
+      <Link to="" onClick={handleLogOut}>
+        Log Out
+      </Link>
+      &nbsp; | &nbsp;
+      <AsyncSelect
+	  	className="select-bar"
+        cacheOptions
+        defaultOptions
+        loadOptions={handleSelect}
+        onChange={handleChange}
+      />
+    </nav>
+  );
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import CoinList from '../../Components/CoinList/CoinList'
 import Pagination from '../../Components/Pagination/Pagination'
 import * as coinsAPI from '../../utilities/coins-api'
@@ -10,7 +9,7 @@ export default function Index() {
     const [coins, setCoins] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [coinsPerPage, setCoinsPerPage] = useState(5);
+	const [coinsPerPage, setCoinsPerPage] = useState(50);
 
     useEffect(() => {
 		async function getCoins() {

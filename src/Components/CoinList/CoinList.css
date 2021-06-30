@@ -1,29 +1,83 @@
 .table-container {
   overflow-x: auto;
   overflow: auto;
-  max-height: 100vh;
-  border: 1px solid red;
+  max-height: 80vh;
+  border: 1px solid purple;
 }
+
+.table-container table {
+  width:100%;
+  height:auto;
+  margin: auto;
+}
+
 th {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background: #146775;
+  background: purple;
   color: white;
   z-index: 3;
+}
+
+.head-col {
+  width: 250px;
+  padding: 0;
 }
 
 .coin-name {
   position: sticky;
   position: -webkit-sticky;
   left: 0;
-  background: #569ca8;
+  background: #f8f8f8;
   color: white;
   z-index: 1;
-  min-width: 150px; /* How can I make this dynamic? */
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* .coin-R {
+  border: 1px solid blue;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} */
+.coin-L {
+  width: 50px;
+  text-align: left;
+  white-space: nowrap;
+  padding-right: 5px;;
+}
+.coin-R {
+  text-align: left;
 }
 
 .favicon {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
+}
+
+.coinImage {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.green {
+  color:green
+}
+
+.red {
+  color: red
+}
+
+@media (max-width: 550px) {
+
+  .head-col {
+    height: 50px;
+    width: 150px;
+  }
+
+  .table-container tr{
+    height: 50px;
+  }
 }

@@ -9,11 +9,11 @@ export default function CoinList({ coins, loading }) {
   }
   return (
     <>
-<div class="table-container">
+<div className="table-container">
   <table >
     <thead>
       <tr>
-        <th>Name</th>
+        <th className="head-col">Name</th>
         <th>Ticker</th>
         <th>Price</th>
         <th>Market Cap</th>
@@ -21,7 +21,6 @@ export default function CoinList({ coins, loading }) {
         <th>24hr</th>
         <th>7d</th>
         <th>14d</th>
-        <th>Chart</th>
       </tr>
     </thead>
     <tbody>
