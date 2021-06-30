@@ -1,12 +1,15 @@
-// import './App.css';
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import * as coinsAPI from '../../utilities/coins-api'
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import CoinDetails from '../../Components/CoinDetails/CoinDetails';
 
 export default function CoinDetailsPage() {
     const [coin, setCoin] = useState([])
     const { id } = useParams()
     const [loading, setLoading] = useState(true)
+    const [showDetails, setShowDetails] = useState()
 
     useEffect(() => {
         async function getCoin() {
@@ -19,7 +22,16 @@ export default function CoinDetailsPage() {
 		getCoin();
 	}, [id]);
 
+    useEffect(() => {
+        if (coin.id !== undefined) {
+            setShowDetails(<CoinDetails coin={coin} />)
+        }
+    }, [coin])
+
     return(
-        <h1>{coin.name}</h1>
+        <>
+            <h1>Coin Details</h1>
+            {showDetails}
+        </>
     )
 }
