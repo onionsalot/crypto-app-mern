@@ -4,6 +4,7 @@ module.exports = {
   index,
   search,
   getOne,
+  getDefault,
 };
 
 async function index(req, res, next) {
@@ -20,4 +21,9 @@ async function getOne(req, res, next) {
   const coin = await Coin.getOne(req.params.id);
   res.json(coin)  
   
+}
+
+async function getDefault(req, res, next) {
+  const coinList = await Coin.getDefault();
+  res.json(coinList)
 }

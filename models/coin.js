@@ -7,6 +7,7 @@ module.exports = {
     getSearch,
     getOne,
     getMultiplePrice,
+    getDefault,
   };
   
 
@@ -44,6 +45,21 @@ async function getSearch() {
             'value': e.id,
             'symbol': e.symbol,
             'label': e.name
+        }
+    })
+    return coinList
+}
+
+async function getDefault() {
+    const response = await fetch(
+        `${rootUrl}search/trending`
+        )
+    const { coins } = await response.json();
+    const coinList = coins.map((e) => {
+        return {
+            'value': e.item.id,
+            'symbol': e.item.symbol,
+            'label': e.item.name
         }
     })
     return coinList

@@ -13,3 +13,7 @@ export function getSearch() {
 export function getOne(id) {
     return sendRequest(`${BASE_URL}/${id}`)
 }
+
+export function getDefault() {
+    return sendRequest(`${BASE_URL}/searchDefault`)
+}

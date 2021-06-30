@@ -9,11 +9,15 @@ import "./NavBar.css"
 
 export default function NavBar({ user, setUser }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [defaultOptions, setDefaultOptions] = useState([])
   const [options, setOptions] = useState([]);
   let history = useHistory();
 
   useEffect(() => {
     async function getCoins() {
+		const defaultList = await coinsAPI.getDefault();
+		setDefaultOptions(defaultList)
+		console.log(defaultList)
       const searchList = await coinsAPI.getSearch();
       setOptions(searchList);
     }
@@ -41,7 +45,6 @@ export default function NavBar({ user, setUser }) {
 
   function handleChange(evt) {
 	history.push(`/details/${evt.value}`);
-	console.log('bloop', evt.value)
   }
 
   return (
@@ -59,7 +62,7 @@ export default function NavBar({ user, setUser }) {
       <AsyncSelect
 	  	className="select-bar"
         cacheOptions
-        defaultOptions
+        defaultOptions={defaultOptions}
         loadOptions={handleSelect}
         onChange={handleChange}
       />
