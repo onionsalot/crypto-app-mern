@@ -5,9 +5,8 @@ import * as coinsAPI from '../../utilities/coins-api'
 
 
 
-export default function Index() {
+export default function Index( {setLoading} ) {
     const [coins, setCoins] = useState([]);
-	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [coinsPerPage, setCoinsPerPage] = useState(50);
 
@@ -33,8 +32,8 @@ export default function Index() {
 	
 	return (
 		<main>
-			<h1>Index</h1>
-            <CoinList coins={currentCoins} loading={loading}/>
+			<h1>Coin List</h1>
+            <CoinList coins={currentCoins} />
 			<Pagination coinsPerPage={coinsPerPage} totalCoins={coins.length} paginate={paginate}/>
 		</main>
 	);

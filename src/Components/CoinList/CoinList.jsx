@@ -1,40 +1,34 @@
 import CoinListItem from "../CoinListItem/CoinListItem";
 import Table from "react-bootstrap/Table";
-import './CoinList.css';
+import "./CoinList.css";
 
-export default function CoinList({ coins, loading }) {
-  const coinItem = coins.map((coin,idx) => <CoinListItem key={idx} coin={coin} />);
-  if (loading === true) {
-    return <div>Loading ...</div>
-  }
+export default function CoinList({ coins }) {
+  const coinItem = coins.map((coin, idx) => (
+    <CoinListItem key={idx} coin={coin} />
+  ));
+  // if (loading === true) {
+  //   return <div>Loading ...</div>
+  // }
+  // return (
   return (
     <>
-<div className="table-container">
-  <table >
-    <thead>
-      <tr>
-        <th className="head-col">Name</th>
-        <th>Ticker</th>
-        <th>Price</th>
-        <th>Market Cap</th>
-        <th>1hr</th>
-        <th>24hr</th>
-        <th>7d</th>
-        <th>14d</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        {coinItem}
-
-
-
-
-
-    </tbody>
-
-  </table>
-</div>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th className="head-col">Name</th>
+              <th>Ticker</th>
+              <th>Price</th>
+              <th>Market Cap</th>
+              <th>1hr</th>
+              <th>24hr</th>
+              <th>7d</th>
+              <th>14d</th>
+            </tr>
+          </thead>
+          <tbody>{coinItem}</tbody>
+        </table>
+      </div>
     </>
   );
 }

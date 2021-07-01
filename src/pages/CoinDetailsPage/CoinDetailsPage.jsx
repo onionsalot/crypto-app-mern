@@ -5,10 +5,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CoinDetails from '../../Components/CoinDetails/CoinDetails';
 
-export default function CoinDetailsPage() {
+export default function CoinDetailsPage( {setLoading} ) {
     const [coin, setCoin] = useState([])
     const { id } = useParams()
-    const [loading, setLoading] = useState(true)
     const [showDetails, setShowDetails] = useState()
 
     useEffect(() => {

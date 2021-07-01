@@ -21,7 +21,7 @@ export default function PortfolioListItem({portfolio, handleChange, isDefault, d
           }}>{portfolio.name}</Link></td> */}
             <td>${total.toLocaleString('en')}</td>
             <td>
-                <input hidden name="id" value={portfolio._id} />
+                <input hidden name="id" value={portfolio._id} readOnly/>
                 <Button onClick={()=> deleteButton( portfolio._id)} type="submit">x</Button>
             </td>
         </tr>

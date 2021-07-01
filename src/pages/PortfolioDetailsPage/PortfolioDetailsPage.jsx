@@ -5,7 +5,7 @@ import PortfolioDetailsItem from "../../Components/PortfolioDetailsItem/Portfoli
 import Table from 'react-bootstrap/Table'
 
 
-export default function PortfolioDetailsPage() {
+export default function PortfolioDetailsPage( {setLoading} ) {
   const [error, setError] = useState("");
   const {id} = useParams();
   const [coins, setCoins] = useState([]);
@@ -17,9 +17,11 @@ export default function PortfolioDetailsPage() {
   useEffect(() => {
       async function getPortfolio() {
           setError("")
+          setLoading(true)
           const currentPortfolio = await portfoliosAPI.getOne(id)
           setPortfolio(currentPortfolio)
           setError(currentPortfolio.error)
+          setLoading(false)
       }
       getPortfolio();
   }, [id])

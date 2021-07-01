@@ -7,9 +7,8 @@ import { Button } from 'react-bootstrap'
 import MyModal from '../../Components/MyModal/MyModal';
 
 
-export default function PortfolioPage() {
+export default function PortfolioPage( {setLoading} ) {
     const [portfolios, setPortfolios]= useState([])
-	  const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [isDefault, setIsDefault] = useState("");
     const [form, setForm] = useState({

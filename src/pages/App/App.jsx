@@ -6,15 +6,15 @@ import Index from '../Index/Index';
 import NavBar from '../../Components/NavBar/NavBar';
 import CoinDetailsPage from '../CoinDetailsPage/CoinDetailsPage'
 import PortfolioPage from '../PortolioPage/PortfolioPage'
-import * as coinsAPI from '../../utilities/coins-api'
 import './App.css';
 import PortfolioDetailsPage from '../PortfolioDetailsPage/PortfolioDetailsPage';
 import PortfolioAddPage from '../PortfolioAddPage/PortfolioAddPage';
+import Loading from '../../Components/Loading/Loading'
 
 export default function App() {
 	const [user, setUser] = useState(getUser());
 	// const [coins, setCoins] = useState([]);
-	const history = useHistory();
+	const [loading, setLoading] = useState(false)
 
 	// useEffect(() => {
 	// 	history.push('/')
@@ -37,19 +37,24 @@ export default function App() {
 					<NavBar user={user} setUser={setUser} />
 					<Switch>
 						<Route exact path="/">
-							<Index />
+							<Index setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/details/:id'>
-							<CoinDetailsPage />
+							<CoinDetailsPage setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/portfolio'>
-							<PortfolioPage user={user} />
+							<PortfolioPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/portfolio/:id'>
-							<PortfolioDetailsPage user={user}/>
+							<PortfolioDetailsPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/portfolio/add/:id'>
-							<PortfolioAddPage user={user}/>
+							<PortfolioAddPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
 						</Route>
 						<Redirect to='/' />
 					</Switch>
