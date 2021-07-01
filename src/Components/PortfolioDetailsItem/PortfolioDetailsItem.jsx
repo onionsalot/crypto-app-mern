@@ -1,12 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import * as portfoliosAPI from "../../utilities/portfolios-api";
-import { useLocation } from "react-router";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import "./PortfolioDetailsItem.css"
 
 export default function PortfolioDetailsItem({
   idx,
@@ -28,8 +25,6 @@ export default function PortfolioDetailsItem({
     e.preventDefault();
 
     const updatedPortfolio = await portfoliosAPI.addCoin(form, coin.id);
-    console.log(portfolio);
-    console.log(updatedPortfolio);
     updatedPortfolio.coins.forEach((e, idx) => {
       updatedPortfolio.coins[idx].usd = portfolio.coins[idx].usd;
       updatedPortfolio.coins[idx].usd_24h_change =
@@ -39,12 +34,12 @@ export default function PortfolioDetailsItem({
   }
 
   return (
-    <Row key={idx}>
-      <Col>
+    <tr className="PortfolioDetailsItem">
+      <th>
         <Link to={`/details/${coin.id}`}>{coin.id}</Link>
-      </Col>
-      <Col>{coin.usd}</Col>
-      <Col>
+      </th>
+      <th>{(coin.usd).toLocaleString('en')}</th>
+      <th>
         <DropdownButton id="dropdown-basic-button" title={coin.quantity}>
           <Dropdown.Header>
             <form autoComplete="off" onSubmit={handleUpdate}>
@@ -61,8 +56,8 @@ export default function PortfolioDetailsItem({
             </form>
           </Dropdown.Header>
         </DropdownButton>
-      </Col>
-      <Col>{Number(coin.usd) * Number(coin.quantity)}</Col>
-    </Row>
+      </th>
+      <th>{(Number(coin.usd) * Number(coin.quantity)).toLocaleString('en')}</th>
+    </tr>
   );
 }

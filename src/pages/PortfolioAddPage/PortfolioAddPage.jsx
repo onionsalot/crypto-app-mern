@@ -52,7 +52,7 @@ export default function PortfolioAddPage() {
         </select>
 
         <label>Amount Owned:</label>
-        <input placeholder="0" type="number" onChange={handleChange} name="quantity"/>
+        <input placeholder="0" step="0.0001" min="0" type="number" onChange={handleChange} name="quantity"/>
         <button type="submit">Submit</button>
         </form>
         </>

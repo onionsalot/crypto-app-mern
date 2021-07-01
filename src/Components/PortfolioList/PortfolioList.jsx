@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 import PortfolioListItem from "../PortfolioListItem/PortfolioListItem";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Table from 'react-bootstrap/Table'
 import MyModal from '../../Components/MyModal/MyModal';
 import * as portfoliosAPI from '../../utilities/portfolios-api'
+import './PortfolioList.css';
 
 
-export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
+export default function PortfolioList({ portfolios, isDefault, setIsDefault, setPortfolios }) {
   const [displayedPortfolios, setDisplayedPortfolios] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowDelete, setModalShowDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
 
   useEffect(() => {
     setDisplayedPortfolios(
-      portfolios.map((portfolio, key) => {
+      portfolios.map((portfolio, idx) => {
         return (
-          <Row key={key}>
-            <PortfolioListItem portfolio={portfolio} handleChange={handleChange} isDefault={isDefault} handleDelete={handleDelete}/>
-          </Row>
+            <PortfolioListItem key={idx} portfolio={portfolio} handleChange={handleChange} isDefault={isDefault} deleteButton={deleteButton}/>
         );
       })
     );
@@ -33,6 +33,7 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
   async function handleSubmit(e) {
     console.log('bloop')
     e.preventDefault();
+    setModalShow(false)
     const data= {
         isDefault: true,
     }
@@ -43,29 +44,47 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault }) {
   }
 
   async function handleDelete(e) {
-    console.log('bloop')
-    e.preventDefault();
-    const deletedPortfolio = await portfoliosAPI.deleteOne(e.target.id.value)
-    }
+    e.preventDefault()
+    setModalShowDelete(false)
+    const deletedPortfolio = await portfoliosAPI.deleteOne(deleteId)
+    console.log(displayedPortfolios[0])
+    setPortfolios(portfolios.filter(portfolio => portfolio._id !== deleteId))
+  }
+
+  function deleteButton(id) {
+    setDeleteId(id)
+    setModalShowDelete(true)
+  }
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col>Default</Col>
-          <Col>Name</Col>
-          <Col>Total</Col>
-          <Col>Action</Col>
-        </Row>
-        {displayedPortfolios}
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th className='align-R'>Default</th>
+            <th className='align-L'>Name</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {displayedPortfolios}
+        </tbody>
 
-      </Container>
+      </Table>
 
       <MyModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         title="Change Default"
         handleSubmit={handleSubmit}
+      />
+
+      <MyModal
+        show={modalShowDelete}
+        onHide={() => setModalShowDelete(false)}
+        title="Delete Portfolio"
+        handleSubmit={handleDelete}
       />
     </>
   );

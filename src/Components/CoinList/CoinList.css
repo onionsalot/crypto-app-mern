@@ -11,13 +11,17 @@
   margin: auto;
 }
 
-th {
+.table-container th {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background: purple;
+  background: #694489;
   color: white;
   z-index: 3;
+}
+
+.table-container td {
+  padding-right: 5px;
 }
 
 .head-col {
@@ -46,7 +50,9 @@ th {
   width: 50px;
   text-align: left;
   white-space: nowrap;
-  padding-right: 5px;;
+  padding-right: 5px;
+  color: black;
+  font-size: 14px;
 }
 .coin-R {
   text-align: left;
@@ -80,4 +86,19 @@ th {
   .table-container tr{
     height: 50px;
   }
+
+  /* .coin-R {
+    vertical-align: middle;
+    text-align: left;
+    margin: auto;
+  }
+
+  .coin-R a {
+    width: 100%;
+    height: 100%;
+  }
+
+  .coinImage {
+    display: hidden;
+  } */
 }

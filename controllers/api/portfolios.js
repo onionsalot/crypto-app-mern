@@ -98,6 +98,7 @@ async function deleteOne(req, res, next) {
     const id = req.params.id;
     const removedPortfolio = await Portfolio.findByIdAndRemove(id)
     console.log('removed portfolio =>', removedPortfolio)
+    res.json(removedPortfolio)
   } catch(err) {
     res.send(err)
   }

@@ -1,7 +1,7 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import parse from 'html-react-parser';
-
+import './CoinDetails.css';
 
 export default function CoinDetails({coin}) {
     const priceDetails = coin.market_data
@@ -9,25 +9,27 @@ export default function CoinDetails({coin}) {
     return(
         <>
             <Row>
-                <Col><img src={image} alt="coin" />{coin.name}</Col>
+                <Col><img src={image} alt="coin" /><h2>{coin.name}<span className="smol">{coin.symbol}</span></h2></Col>
                 <Col>
-                    {priceDetails.current_price.usd} <br />
-                    Last Hour: {priceDetails.price_change_percentage_1h_in_currency.usd} <br />
-                    Last Day: {priceDetails.price_change_percentage_24h_in_currency.usd} 
+                    Current Price: ${(priceDetails.current_price.usd).toLocaleString('en')} <br />
+                    Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green":"red"}>                               {priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)} 
+                    </span><br />
+                    Last Day: <span className={priceDetails.price_change_percentage_24h_in_currency.usd > 0 ? "green":"red"}>{priceDetails.price_change_percentage_24h_in_currency.usd.toFixed(2)} 
+                    </span>
                 </Col>
             </Row>
             <hr/>
             <Row>
                 <Col>
-                    Supply: <br />
-                    Market Cap: {priceDetails.market_cap.usd}
+                    Circulating Supply: {(priceDetails.circulating_supply).toLocaleString('en')}<br />
+                    Market Cap: {(priceDetails.market_cap.usd).toLocaleString('en')}
                 </Col>
                 <Col>
-                    Volume: {priceDetails.total_volume.usd}
+                    Volume: {(priceDetails.total_volume.usd).toLocaleString('en')}
                 </Col>
                 <Col>
-                    24 Hour High: {priceDetails.high_24h.usd} <br />
-                    24 Hour Low: {priceDetails.low_24h.usd} 
+                    24 Hour High: ${(priceDetails.high_24h.usd).toLocaleString('en')} <br />
+                    24 Hour Low: ${(priceDetails.low_24h.usd).toLocaleString('en')} 
                 </Col>
             </Row>
             <hr/>

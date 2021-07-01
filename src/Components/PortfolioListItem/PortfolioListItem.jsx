@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
-import Col from 'react-bootstrap/Col'
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap'
 
-export default function PortfolioListItem({portfolio, handleChange, isDefault, handleDelete}) {
+export default function PortfolioListItem({portfolio, handleChange, isDefault, deleteButton}) {
     const [total, setTotal] = useState([])
     const url= `/portfolio/${portfolio._id}`
     useEffect(() => {
@@ -13,18 +12,18 @@ export default function PortfolioListItem({portfolio, handleChange, isDefault, h
         setTotal(sum)
     }, [portfolio])
     return(
-        <>
-            <Col><input type="radio" onChange={handleChange} name="isDefault" value={portfolio._id} checked={portfolio._id === isDefault? true:false}/></Col>
-            <Col><Link to={url}>{portfolio.name}</Link></Col>
-            {/* <Col><Link to={{
+        <tr>
+            <td className='align-R'><input type="radio" onChange={handleChange} name="isDefault" value={portfolio._id} checked={portfolio._id === isDefault? true:false}/></td>
+            <td className='align-L'><Link to={url}><h4>{portfolio.name}</h4></Link></td>
+            {/* <td><Link to={{
             pathname: url,
             state: { portfolio },
-          }}>{portfolio.name}</Link></Col> */}
-            <Col>{total}</Col>
-            <Col><form autoComplete="off" onSubmit={handleDelete}>
+          }}>{portfolio.name}</Link></td> */}
+            <td>${total.toLocaleString('en')}</td>
+            <td>
                 <input hidden name="id" value={portfolio._id} />
-                <Button type="submit">Delete</Button>
-                </form></Col>
-        </>
+                <Button onClick={()=> deleteButton( portfolio._id)} type="submit">x</Button>
+            </td>
+        </tr>
     )
 }

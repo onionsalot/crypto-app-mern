@@ -39,7 +39,7 @@ export default function PortfolioPage() {
     async function handleSubmit(e) {
         console.log('bloop')
         e.preventDefault();
-
+        setModalShow(false)
         const portfolioList = await portfoliosAPI.create(form);
         setPortfolios([...portfolios, portfolioList])
       }
@@ -50,7 +50,7 @@ export default function PortfolioPage() {
             <nav>
             <Button variant="primary" onClick={() => setModalShow(true)}>+</Button>
             </nav>
-            <PortfolioList portfolios={portfolios} isDefault={isDefault} setIsDefault={setIsDefault}/>
+            <PortfolioList portfolios={portfolios} isDefault={isDefault} setIsDefault={setIsDefault} setPortfolios={setPortfolios}/>
 
 
       <MyModal

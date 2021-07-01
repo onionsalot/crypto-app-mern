@@ -12,11 +12,14 @@ export default function MyModal(props) {
           name="name"
           value={props.form.name}
           onChange={props.handleChange}
+          placeholder="Portfolio Name"
           required
         />
       </label>)
     } else if (props.title === "Change Default") {
       return(<p>Change default portfolio?</p>)
+    } else if (props.title === "Delete Portfolio") {
+      return(<p>Remove selected portfolio?</p>)
     }
   } 
 
@@ -38,8 +41,8 @@ export default function MyModal(props) {
           {getMsg()}
         </div>
         <div className="modal-buttons"> 
-          <Button onClick={props.onHide} type="submit">
-            Add
+          <Button type="submit">
+            Confirm
           </Button>
           <Button onClick={props.onHide}>Close</Button>
         </div>

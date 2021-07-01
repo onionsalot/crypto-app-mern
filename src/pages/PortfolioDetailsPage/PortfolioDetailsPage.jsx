@@ -1,11 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as portfoliosAPI from "../../utilities/portfolios-api";
-import { useLocation } from "react-router";
 import PortfolioDetailsItem from "../../Components/PortfolioDetailsItem/PortfolioDetailsItem";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Table from 'react-bootstrap/Table'
 
 
 export default function PortfolioDetailsPage() {
@@ -57,16 +54,20 @@ export default function PortfolioDetailsPage() {
     <>
       <h2>{error}</h2>
       <h1>{portfolio.name}</h1>
-      <Container>
-        <Row>
-          <Col>Name</Col>
-          <Col>Price</Col>
-          <Col>Quantity</Col>
-          <Col>Total</Col>
-        </Row>
-        {coins}
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {coins}
+        </tbody>
 
-      </Container>
+      </Table>
 
     </>
   );

@@ -1,0 +1,19 @@
+#dropdown-basic-button {
+    background-color: transparent;
+    outline:none;
+    color: black;
+    border:none;
+    font-weight: bold;
+    color: var(--main-purple)
+}
+.PortfolioDetailsItem th {
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+}
+
+.PortfolioDetailsItem a {
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: bold;
+}

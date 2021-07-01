@@ -7,6 +7,8 @@
   --orange: #F67F00;
   --text-light: #968c84;
   --text-dark: #615954;
+  --main-purple: #694489;
+  --sub-purple: purple;
 }
 
 *, *:before, *:after {
@@ -16,6 +18,15 @@
 .div-test {
   width: 100px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: #694489;
+}
+
+a:hover {
+  text-decoration: none;
+  color: blue;
 }
 
 body {
@@ -126,7 +137,7 @@ button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--main-purple);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
@@ -147,12 +158,23 @@ button.btn-xs {
   padding: .4vmin .5vmin;
 }
 
+button.btn-primary {
+  background-color: var(--main-purple);
+  border: .1bmin solid var(--sub-purple);
+}
+
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
   background-color: var(--tan-4);
 }
-
-button[type="submit"] {
-  grid-column: span 2;
-  margin: 1vmin 0 0;
+input[type="radio"]:checked:before {
+  content: "";
+  display: block;
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--main-purple);
 }
