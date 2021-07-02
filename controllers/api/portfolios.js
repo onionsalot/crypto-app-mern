@@ -70,7 +70,7 @@ async function update(req, res, next) {
   const data = req.body;
   const many = await Portfolio.updateMany({"user": req.user._id}, {$set: {"isDefault":false}})
   const updatedPortfolio = await Portfolio.findByIdAndUpdate(id, data, {new:true})
-  res.json(updatedPortfolio)
+  res.json({ success: true, updatedPortfolio })
 }
 
 async function addCoin(req, res, next) {
@@ -87,7 +87,7 @@ async function addCoin(req, res, next) {
     const addedCoin = await Portfolio.findOneAndUpdate({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}},{ returnOriginal: false })
     const addedQuantity = await Portfolio.findOneAndUpdate({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}},{ returnOriginal: false })
     console.log(addedQuantity.coins.find(e => e.id === cid))
-    res.json(addedQuantity)
+    res.json({success:true, addedQuantity})
   } catch(err) {
     res.send(err)
   }
@@ -98,7 +98,7 @@ async function deleteOne(req, res, next) {
     const id = req.params.id;
     const removedPortfolio = await Portfolio.findByIdAndRemove(id)
     console.log('removed portfolio =>', removedPortfolio)
-    res.json(removedPortfolio)
+    res.json({ success: true, removedPortfolio })
   } catch(err) {
     res.send(err)
   }

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import * as portfoliosAPI from '../../utilities/portfolios-api'
+import MyToast from "../../Components/MyToast/MyToast"
 import './PortfolioAddPage.css'
 
 export default function PortfolioAddPage( {setLoading} ) {
     const [portfolios, setPortfolios] = useState([])
+    const [show, setShow] = useState(false);
+    const [msg, setMsg] = useState("")
     const { id } = useParams() // coin ID
     const [form, setForm] = useState(
         {
@@ -12,6 +15,7 @@ export default function PortfolioAddPage( {setLoading} ) {
             quantity: 0,
         }
     )
+    const history = useHistory();
 
     useEffect(() =>{
         async function getPortfolios() {
@@ -38,7 +42,12 @@ export default function PortfolioAddPage( {setLoading} ) {
         e.preventDefault();
 
         const portfolioList = await portfoliosAPI.addCoin(form, id);
-        // setPortfolios([...portfolios, portfolioList])
+        if (portfolioList.success === true) {
+            history.push(`/portfolio/${form.id}`);
+          } else {
+            setMsg(<span className="toast-danger">ERROR removing portfolio</span>)
+            setShow(true)
+          }
         console.log(portfolioList)
 
     }
@@ -58,6 +67,7 @@ export default function PortfolioAddPage( {setLoading} ) {
             <input placeholder="0" step="0.0001" min="0" type="number" onChange={handleChange} name="quantity"/>
             <button type="submit" disabled={form.id === null? true:false}>Submit</button>
             </form>
+            <MyToast show={show} setShow={setShow} msg={msg}/>
         </div>
     )
 }

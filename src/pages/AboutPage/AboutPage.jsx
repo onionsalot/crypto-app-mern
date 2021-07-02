@@ -14,7 +14,7 @@ export default function AboutPage() {
               <dd>Viewing the pages are free! But if you want access to the portfolio system, you need to log in. Searching will display the top 7 searches of the day as well as anything not in the top 250 you'd like to view.</dd>
           <dt>Tech Used:</dt>
               <dd>
-                  NodeJs, Token Auth, MongoDB, Javascript, React, Css, Bootstrap
+                  NodeJs, Express, Token Auth, MongoDB, Javascript, React, Css, Bootstrap
                   <ul>
                       <li>APIs used: CoinGecko API </li>
                       <li>Notable libraries: React-responsive, html-react-parser, React-Select</li>

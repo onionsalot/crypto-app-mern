@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Table from 'react-bootstrap/Table'
 import MyModal from '../../Components/MyModal/MyModal';
 import * as portfoliosAPI from '../../utilities/portfolios-api'
+import MyToast from '../../Components/MyToast/MyToast';
 import './PortfolioList.css';
 
 
@@ -12,6 +13,8 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
   const [modalShow, setModalShow] = useState(false);
   const [modalShowDelete, setModalShowDelete] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+  const [show, setShow] = useState(false);
+  const [msg, setMsg] = useState("")
 
   useEffect(() => {
     setDisplayedPortfolios(
@@ -26,7 +29,7 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
   function handleChange(e) {
       console.log(e.target.value)
       setIsDefault(e.target.value);
-    setModalShow(true)
+      setModalShow(true)
 
   }
 
@@ -39,6 +42,13 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
     }
 
     const update = await portfoliosAPI.update(data, isDefault);
+    if (update.success === true) {
+      setMsg(<span className="toast-success">New DEFAULT portfolio set!</span>)
+      setShow(true)
+    } else {
+      setMsg(<span className="toast-danger">ERROR setting default</span>)
+      setShow(true)
+    }
     console.log(update)
     // setPortfolios([...portfolios, portfolioList])
   }
@@ -47,7 +57,13 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
     e.preventDefault()
     setModalShowDelete(false)
     const deletedPortfolio = await portfoliosAPI.deleteOne(deleteId)
-    console.log(displayedPortfolios[0])
+    if (deletedPortfolio.success === true) {
+      setMsg(<span className="toast-success">Successfully REMOVED portfolio</span>)
+      setShow(true)
+    } else {
+      setMsg(<span className="toast-danger">ERROR removing portfolio</span>)
+      setShow(true)
+    }
     setPortfolios(portfolios.filter(portfolio => portfolio._id !== deleteId))
   }
 
@@ -86,6 +102,9 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
         title="Delete Portfolio"
         handleSubmit={handleDelete}
       />
+
+      <MyToast show={show} setShow={setShow} msg={msg}/>
+
     </>
   );
 }
