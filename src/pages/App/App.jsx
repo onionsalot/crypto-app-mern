@@ -11,6 +11,7 @@ import PortfolioDetailsPage from '../PortfolioDetailsPage/PortfolioDetailsPage';
 import PortfolioAddPage from '../PortfolioAddPage/PortfolioAddPage';
 import Loading from '../../Components/Loading/Loading'
 import ScrollToTop from '../../Components/ScrollToTop/ScrollToTop'
+import AboutPage from '../AboutPage/AboutPage'
 
 export default function App() {
 	const [user, setUser] = useState(getUser());
@@ -45,6 +46,9 @@ export default function App() {
 						<Route exact path='/details/:id'>
 							<CoinDetailsPage setLoading={setLoading}/>
 							{loading ? <Loading /> : null}
+						</Route>
+						<Route exact path='/about'>
+							<AboutPage />
 						</Route>
 						<Route exact path='/portfolio'>
 							<PortfolioPage user={user} setLoading={setLoading}/>

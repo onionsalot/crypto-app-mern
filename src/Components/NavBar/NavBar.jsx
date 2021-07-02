@@ -77,7 +77,7 @@ export default function NavBar({ user, setUser }) {
             &nbsp; | &nbsp;
             <Link to="/portfolio">Portfolio</Link>
             &nbsp; | &nbsp;
-            <Link to="/portfolio">About</Link>
+            <Link to="/about">About</Link>
           </div>
           <div className="nav-R">
             <AsyncSelect
@@ -102,7 +102,7 @@ export default function NavBar({ user, setUser }) {
             &nbsp; | &nbsp;
             <Link to="/portfolio">Portfolio</Link>
             &nbsp; | &nbsp;
-            <Link to="/portfolio">About</Link>
+            <Link to="/about">About</Link>
             &nbsp; | &nbsp;
             {user.name} <Link to="" onClick={handleLogOut}>
                 (Log Out)
