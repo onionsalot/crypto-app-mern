@@ -15,10 +15,10 @@ export default function CoinDetails({coin}) {
                 <Col><img src={image} alt="coin" /><h2><Link to={fav}><img src={star} alt="fav" className="favicon"/></Link>{coin.name}<span className="smol">{coin.symbol}</span></h2></Col>
                 <Col>
                     Current Price: <span className="b">${(priceDetails.current_price.usd).toLocaleString('en')}</span> <br />
-                    Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green b":"red b"}>                               {priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)} 
-                    </span><br />
+                    Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green b":"red b"}>                               {priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)}
+                    </span>&nbsp;%<br />
                     Last Day: <span className={priceDetails.price_change_percentage_24h_in_currency.usd > 0 ? "green b":"red b"}>{priceDetails.price_change_percentage_24h_in_currency.usd.toFixed(2)} 
-                    </span>
+                    </span>&nbsp;%
                 </Col>
             </Row>
             <hr/>

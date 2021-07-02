@@ -54,8 +54,8 @@ export default function PortfolioDetailsPage( {setLoading} ) {
 
   return (
     <>
-      <h2>{error}</h2>
-      <h1>{portfolio.name}</h1>
+      <h4>{error}</h4>
+      <h3>{portfolio.name}</h3>
       <Table striped bordered hover size="sm">
         <thead>
           <tr>

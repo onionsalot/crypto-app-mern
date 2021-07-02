@@ -66,7 +66,40 @@ export default function App() {
 					</Switch>
 				</>
 			) : (
-				<AuthPage setUser={setUser} />
+				// <AuthPage setUser={setUser} />
+				<>
+					<NavBar user={user} setUser={setUser} />
+					<ScrollToTop />
+					<Switch>
+						<Route exact path="/">
+							<Index setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
+						</Route>
+						<Route exact path='/details/:id'>
+							<CoinDetailsPage setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
+						</Route>
+						<Route exact path='/about'>
+							<AboutPage />
+						</Route>
+						{/* <Route exact path='/portfolio'>
+							<PortfolioPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
+						</Route>
+						<Route exact path='/portfolio/:id'>
+							<PortfolioDetailsPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
+						</Route>
+						<Route exact path='/portfolio/add/:id'>
+							<PortfolioAddPage user={user} setLoading={setLoading}/>
+							{loading ? <Loading /> : null}
+						</Route> */}
+						<Route exact path='/auth'>
+							<AuthPage setUser={setUser} />
+						</Route>
+						<Redirect to='/auth' />
+					</Switch>
+				</>
 			)}
 		</main>
 	);

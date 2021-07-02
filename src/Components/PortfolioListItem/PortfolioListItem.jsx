@@ -14,7 +14,7 @@ export default function PortfolioListItem({portfolio, handleChange, isDefault, d
     return(
         <tr>
             <td className='align-R'><input type="radio" onChange={handleChange} name="isDefault" value={portfolio._id} checked={portfolio._id === isDefault? true:false}/></td>
-            <td className='align-L'><Link to={url}><h4>{portfolio.name}</h4></Link></td>
+            <td className='align-L'><Link to={url}><h5>{portfolio.name}</h5></Link></td>
             {/* <td><Link to={{
             pathname: url,
             state: { portfolio },

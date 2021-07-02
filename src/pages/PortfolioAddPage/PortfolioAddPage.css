@@ -7,8 +7,8 @@
         margin: auto;
     }
     .PortfolioAddPage input, .PortfolioAddPage select{
-        width: 80%;
-        height:20vh;
+        width: 90%;
+        height:10vh;
         font-size: 30px;
     }
     .PortfolioAddPage button{

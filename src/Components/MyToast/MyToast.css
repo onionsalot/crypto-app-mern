@@ -1,0 +1,32 @@
+.toast{
+    z-index: 10001;
+    position: fixed;
+    top: 1px;
+    right:1px;
+  }
+
+.toast-success {
+    color: green;
+}
+
+.toast-danger {
+    color: red;
+}
+
+.toast-header {
+    font-weight: bold;
+    display: flex;
+    align-content: space-between;
+    margin:10px;
+    position: relative;
+}
+
+.toast-header button {
+    margin: 0 auto;
+    position:fixed;
+    top: 15px;
+    right: 10px;
+    background-color: black;
+    color: white;
+    border: 0px;
+}

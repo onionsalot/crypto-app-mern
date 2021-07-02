@@ -2,14 +2,14 @@ dl {
     display: flex;
     width: 95%;
     flex-flow: row wrap;
-    border: solid #333;
+    border: solid var(--sub-purple);;
     border-width: 1px 1px 0 0;
     margin: 0 auto;
   }
   dt {
     flex-basis: 20%;
     padding: 2px 4px;
-    background: #333;
+    background: var(--main-purple);
     text-align: right;
     color: #fff;
   }
@@ -19,7 +19,7 @@ dl {
     margin: 0;
     padding: 2px 4px;
     text-align: left;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--sub-purple);
   }
   .about-holder{
     margin-top: 50px;
@@ -44,6 +44,7 @@ dl {
   }
   .align-right{
       float: right;
+      font-weight: bold;
   }
 
   @media (max-width: 1300px) {

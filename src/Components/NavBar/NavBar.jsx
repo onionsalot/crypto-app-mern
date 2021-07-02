@@ -63,12 +63,20 @@ export default function NavBar({ user, setUser }) {
         <div className="top-title">
           <h2>©&nbsp;BootstrapMarketCap</h2>
           <div>
-            <span>Logged in as: {user.name} </span>
-            <span className="logout">
-              <Link to="" onClick={handleLogOut}>
-                (Log Out)
-              </Link>
-            </span>
+            {user ? (
+              <>
+                <span>Logged in as: {user.name} </span>
+                <span className="logout">
+                  <Link to="" onClick={handleLogOut}>
+                    (Log Out)
+                  </Link>
+                </span>
+              </>
+            ):(
+              <Link to="/auth">
+                    (Register/Login)
+                  </Link>
+            )}
           </div>
         </div>
         <nav>
@@ -103,10 +111,19 @@ export default function NavBar({ user, setUser }) {
             <Link to="/portfolio">Portfolio</Link>
             &nbsp; | &nbsp;
             <Link to="/about">About</Link>
-            &nbsp; | &nbsp;
-            {user.name} <Link to="" onClick={handleLogOut}>
-                (Log Out)
-              </Link>
+            {user ? (
+              <>
+                &nbsp; | &nbsp;
+                {user.name} <Link to="" onClick={handleLogOut}>(Log Out)</Link>
+              </>
+            ):(
+              <>
+              &nbsp; | &nbsp;
+              <Link to="/auth">
+                    (Register/Login)
+                  </Link>
+              </>
+            )}
           </div>
           <div >
             <AsyncSelect

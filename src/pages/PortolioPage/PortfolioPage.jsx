@@ -45,7 +45,7 @@ export default function PortfolioPage( {setLoading} ) {
 
     return(
         <>
-            <h1>Portfolio</h1>
+            <h3>Portfolio</h3>
             <nav>
             <Button variant="primary" onClick={() => setModalShow(true)}>+</Button>
             </nav>

@@ -29,7 +29,7 @@ export default function CoinDetailsPage( {setLoading} ) {
 
     return(
         <>
-            <h1>Coin Details</h1>
+            <h3>Coin Details</h3>
             {showDetails}
         </>
     )

@@ -1,12 +1,12 @@
 :root {
   --white: #FFFFFF;
-  --tan-1: #FBF9F6;
+  --tan-1: #ebebeb;
   --tan-2: #E7E2DD;
-  --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
+  --tan-3: #976fb9;
+  --tan-4: #c1abd4;
   --orange: #F67F00;
-  --text-light: #968c84;
-  --text-dark: #615954;
+  --text-light: hsl(0, 0%, 100%);
+  --text-dark: black;
   --main-purple: #694489;
   --sub-purple: purple;
 }
@@ -97,7 +97,7 @@ code {
 .form-container {
   padding: 3vmin;
   background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
+  border: .1vmin solid var(--main-purple);
   border-radius: 1vmin;
 }
 
@@ -110,7 +110,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 1.25vmin;
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 label {
@@ -160,7 +160,7 @@ button.btn-xs {
 
 button.btn-primary {
   background-color: var(--main-purple);
-  border: .1bmin solid var(--sub-purple);
+  border: .1vmin solid var(--sub-purple);
 }
 
 button:disabled, form:invalid button[type="submit"] {
@@ -181,4 +181,22 @@ input[type="radio"]:checked:before {
 
 .visually-hidden {
   visibility: hidden;
+}
+
+@media (max-width: 550px) {
+  input {
+    padding: 1vmin;
+    font-size: 16px;
+    border: .1vmin solid var(--tan-3);
+    border-radius: .5vmin;
+    color: var(--text-dark);
+    background-image: none !important; /* prevent lastpass */
+    outline: none;
+  }
+  label {
+    font-size: 16px;
+  }
+  button {
+    font-size: 16px;
+  }
 }
