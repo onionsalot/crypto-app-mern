@@ -10,6 +10,7 @@ import './App.css';
 import PortfolioDetailsPage from '../PortfolioDetailsPage/PortfolioDetailsPage';
 import PortfolioAddPage from '../PortfolioAddPage/PortfolioAddPage';
 import Loading from '../../Components/Loading/Loading'
+import ScrollToTop from '../../Components/ScrollToTop/ScrollToTop'
 
 export default function App() {
 	const [user, setUser] = useState(getUser());
@@ -35,6 +36,7 @@ export default function App() {
 			{user ? (
 				<>
 					<NavBar user={user} setUser={setUser} />
+					<ScrollToTop />
 					<Switch>
 						<Route exact path="/">
 							<Index setLoading={setLoading}/>

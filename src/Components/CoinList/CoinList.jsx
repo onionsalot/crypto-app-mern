@@ -1,12 +1,23 @@
 import CoinListItem from "../CoinListItem/CoinListItem";
 import { useMediaQuery } from "react-responsive";
 import "./CoinList.css";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 export default function CoinList({ coins }) {
+  const top = useRef(null);
+
+  const scrollToTop = () => {
+    top.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const coinItem = coins.map((coin, idx) => (
     <CoinListItem key={idx} coin={coin} />
   ));
 
+  useEffect(() => {
+    scrollToTop();
+  }, [coinItem]);
 
   const Large = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 700 });
@@ -14,14 +25,14 @@ export default function CoinList({ coins }) {
   };
 
   const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 699 })
-    return isMobile ? children : null
-  }
-
-
+    const isMobile = useMediaQuery({ maxWidth: 699 });
+    return isMobile ? children : null;
+  };
+  
   return (
     <>
       <div className="table-container">
+      <div ref={top} />
         <table>
           <thead>
             <tr>
@@ -36,17 +47,19 @@ export default function CoinList({ coins }) {
                 <th>14d</th>
               </Large>
               <Mobile>
-              <th className="head-col">Name</th>
+                <th className="head-col">Name</th>
                 <th>Price</th>
                 <th>Market Cap</th>
                 <th>1hr</th>
                 <th>24hr</th>
                 <th>7d</th>
-                <th>14d</th> 
+                <th>14d</th>
               </Mobile>
             </tr>
           </thead>
-          <tbody>{coinItem}</tbody>
+          <tbody>
+            {coinItem}
+          </tbody>
         </table>
       </div>
     </>
