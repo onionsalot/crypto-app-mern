@@ -32,9 +32,9 @@ export default function Index( {setLoading} ) {
 	
 	return (
 		<main>
-			<h1>Coin List</h1>
+				<Pagination coinsPerPage={coinsPerPage} totalCoins={coins.length} paginate={paginate} currentPage={currentPage}/>
+
             <CoinList coins={currentCoins} />
-			<Pagination coinsPerPage={coinsPerPage} totalCoins={coins.length} paginate={paginate}/>
 		</main>
 	);
 }

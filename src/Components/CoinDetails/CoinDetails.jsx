@@ -14,25 +14,25 @@ export default function CoinDetails({coin}) {
             <Row>
                 <Col><img src={image} alt="coin" /><h2><Link to={fav}><img src={star} alt="fav" className="favicon"/></Link>{coin.name}<span className="smol">{coin.symbol}</span></h2></Col>
                 <Col>
-                    Current Price: ${(priceDetails.current_price.usd).toLocaleString('en')} <br />
-                    Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green":"red"}>                               {priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)} 
+                    Current Price: <span className="b">${(priceDetails.current_price.usd).toLocaleString('en')}</span> <br />
+                    Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green b":"red b"}>                               {priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)} 
                     </span><br />
-                    Last Day: <span className={priceDetails.price_change_percentage_24h_in_currency.usd > 0 ? "green":"red"}>{priceDetails.price_change_percentage_24h_in_currency.usd.toFixed(2)} 
+                    Last Day: <span className={priceDetails.price_change_percentage_24h_in_currency.usd > 0 ? "green b":"red b"}>{priceDetails.price_change_percentage_24h_in_currency.usd.toFixed(2)} 
                     </span>
                 </Col>
             </Row>
             <hr/>
             <Row>
                 <Col>
-                    Circulating Supply: {(priceDetails.circulating_supply).toLocaleString('en')}<br />
-                    Market Cap: {(priceDetails.market_cap.usd).toLocaleString('en')}
+                    Circulating Supply: <span className="b">{(priceDetails.circulating_supply).toLocaleString('en')}</span><br />
+                    Market Cap: <span className="b">{(priceDetails.market_cap.usd).toLocaleString('en')}</span>
                 </Col>
                 <Col>
-                    Volume: {(priceDetails.total_volume.usd).toLocaleString('en')}
+                    Volume: <span className="b">{(priceDetails.total_volume.usd).toLocaleString('en')}</span>
                 </Col>
                 <Col>
-                    24 Hour High: ${(priceDetails.high_24h.usd).toLocaleString('en')} <br />
-                    24 Hour Low: ${(priceDetails.low_24h.usd).toLocaleString('en')} 
+                    24 Hour High: <span className="b">${(priceDetails.high_24h.usd).toLocaleString('en')}</span> <br />
+                    24 Hour Low: <span className="b">${(priceDetails.low_24h.usd).toLocaleString('en')}</span>
                 </Col>
             </Row>
             <hr/>

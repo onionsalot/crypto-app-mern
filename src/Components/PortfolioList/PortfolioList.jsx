@@ -58,7 +58,7 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
 
   return (
     <>
-      <Table striped bordered hover size="sm">
+      <Table striped bordered hover size="sm" className="PortfolioList">
         <thead>
           <tr>
             <th className='align-R'>Default</th>

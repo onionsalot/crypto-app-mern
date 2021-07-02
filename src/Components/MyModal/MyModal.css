@@ -1,0 +1,26 @@
+@media (max-width: 550px) {
+    .modal-body {
+
+    }
+    
+    .modal-main {
+        justify-items: stretch;
+        margin: auto;
+
+    }
+    .modal-main input, .modal-main label {
+        height: 60px;
+        font-size: 20px;
+    }
+    
+    .modal-buttons {
+        justify-items: end;
+        margin: auto;
+    }
+    
+    .MyModal form {
+        display:flex;
+        flex-direction: column;
+
+    }
+  }

@@ -1,3 +1,7 @@
+.PortfolioList td {
+    vertical-align: middle;
+    margin: auto;
+}
 .align-R {
     text-align: right;
 }

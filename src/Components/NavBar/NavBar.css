@@ -1,3 +1,47 @@
 .select-bar{
     z-index: 100;
 }
+
+.NavBar .top-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.NavBar h2 {
+    text-align: left;
+}
+
+.NavBar nav {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-L {
+    width: 50vw;
+    text-align: left;
+    margin:auto;
+    vertical-align: middle;
+}
+
+.nav-R {
+    width: 50vw;
+}
+
+.logout {
+    font-size: 12px;
+}
+
+.top-title div {
+    margin: auto 0;
+    text-align: right;
+
+}
+
+@media (max-width: 579px) {
+    .NavBar nav {
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+  }
