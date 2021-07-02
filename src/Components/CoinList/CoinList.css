@@ -78,9 +78,47 @@
 
 @media (max-width: 550px) {
 
-  .head-col {
-    height: 50px;
-    width: 150px;
+  .mob-view {
+    display: grid;
+    grid-template-columns: [first-c] 50px [second-c] 40px [third-c] 110px;
+    grid-template-rows: [first-r] auto [second-r] auto;
+    width: 200px;
+    color: black;
+  }
+
+  .rank-icon {
+    grid-column-start: first-c;
+    grid-column-end: span 1;
+    grid-row-start: first-r;
+    grid-row-end: span 2;
+    align-self: center;
+  }
+
+  .coin-icon {
+    grid-column-start: second-c;
+    grid-column-end: span 1;
+    grid-row-start: first-r;
+    grid-row-end: span 2;
+    align-self: center;
+  }
+  
+  .coin-R {
+    grid-column-start: third-c;
+    grid-column-end: span 1;
+    grid-row-start: first-r;
+    grid-row-end: span 1;
+  }
+
+  .ticker {
+    grid-column-start: third-c;
+    grid-column-end: span 1;
+    grid-row-start: second-r;
+    grid-row-end: span 1;
+    place-self: end;
+    margin-right: 10px;
+    background-color: rgb(224, 224, 224);
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 10%;
   }
 
   .table-container tr{
