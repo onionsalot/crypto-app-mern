@@ -3,11 +3,13 @@ const Coin = require("../../models/coin")
 
 module.exports = {
   index,
+  getFavs,
   create,
   update,
   addCoin,
   getOne,
   deleteOne,
+  deleteCoin,
 };
 
 async function index(req, res, next) {
@@ -29,9 +31,26 @@ async function index(req, res, next) {
   res.json(portfolioList)
 }
 
+async function getFavs(req,res, next) {
+  try{
+    const portfolioList = await Portfolio.find({user: req.user._id});
+    const arr = []
+    portfolioList.forEach((portfolio, idx) =>
+      portfolio.coins.forEach((coin, idx) =>
+        arr.push(coin.id)))
+    const uniqueArray = [...new Set(arr)];//convert array of dupes to a set which implicitly removes dupes then convert back to array.
+    if (uniqueArray.length !== 0) {
+      res.json({success:true, uniqueArray})
+    } else {
+      res.json({success:false})
+    }
+  } catch(err) {
+    res.json(err)
+  }
+}
+
 async function getOne(req, res, next) {
   const portfolio = await Portfolio.findById(req.params.id)
-  console.log(portfolio.user, req.user._id)
   if (String(portfolio.user) !== String(req.user._id)) {
     // check if current logged in user has access to this item..
     return res.json({error: "invalid user"})
@@ -59,7 +78,6 @@ async function create(req, res, next) {
   if (portfolio.length === 0) {
     data.isDefault = true
   }
-  console.log(data)
   const createdPortfolio = await Portfolio.create(data);
   res.json(createdPortfolio)
 }
@@ -86,7 +104,6 @@ async function addCoin(req, res, next) {
     const test = `coins.${cid}`
     const addedCoin = await Portfolio.findOneAndUpdate({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}},{ returnOriginal: false })
     const addedQuantity = await Portfolio.findOneAndUpdate({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}},{ returnOriginal: false })
-    console.log(addedQuantity.coins.find(e => e.id === cid))
     res.json({success:true, addedQuantity})
   } catch(err) {
     res.send(err)
@@ -97,8 +114,19 @@ async function deleteOne(req, res, next) {
   try{
     const id = req.params.id;
     const removedPortfolio = await Portfolio.findByIdAndRemove(id)
-    console.log('removed portfolio =>', removedPortfolio)
     res.json({ success: true, removedPortfolio })
+  } catch(err) {
+    res.send(err)
+  }
+}
+
+async function deleteCoin(req, res, next) {
+  try{
+    const data = req.body
+    const removedCoin = await Portfolio.findByIdAndUpdate(
+      { _id: data.portfolioId }, 
+      { $pull: { 'coins': {"id": data.coinId} } }, {new : true});
+    res.json({ success: true, removedCoin })
   } catch(err) {
     res.send(err)
   }

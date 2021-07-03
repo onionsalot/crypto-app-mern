@@ -66,7 +66,6 @@ async function getDefault() {
 }
 
 async function getOne(id) {
-    console.log(id)
     const response = await fetch(
         `${rootUrl}coins/${id}?localization=false&community_data=false&developer_data=false`
     )

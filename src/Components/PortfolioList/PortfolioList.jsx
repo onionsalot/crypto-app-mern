@@ -27,14 +27,12 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
   }, [portfolios, isDefault]);
 
   function handleChange(e) {
-      console.log(e.target.value)
       setIsDefault(e.target.value);
       setModalShow(true)
 
   }
 
   async function handleSubmit(e) {
-    console.log('bloop')
     e.preventDefault();
     setModalShow(false)
     const data= {
@@ -49,7 +47,6 @@ export default function PortfolioList({ portfolios, isDefault, setIsDefault, set
       setMsg(<span className="toast-danger">ERROR setting default</span>)
       setShow(true)
     }
-    console.log(update)
     // setPortfolios([...portfolios, portfolioList])
   }
 

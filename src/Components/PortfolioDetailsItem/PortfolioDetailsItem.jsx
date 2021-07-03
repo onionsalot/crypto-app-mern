@@ -10,6 +10,8 @@ export default function PortfolioDetailsItem({
   coin,
   portfolio,
   setPortfolio,
+  setModalShow,
+  setDeleteCoin,
 }) {
   const [form, setForm] = useState({
     id: portfolio._id,
@@ -21,16 +23,15 @@ export default function PortfolioDetailsItem({
   }
 
   async function handleUpdate(e) {
-    console.log("bloop");
     e.preventDefault();
 
     const updatedPortfolio = await portfoliosAPI.addCoin(form, coin.id);
-    updatedPortfolio.coins.forEach((e, idx) => {
-      updatedPortfolio.coins[idx].usd = portfolio.coins[idx].usd;
-      updatedPortfolio.coins[idx].usd_24h_change =
+    updatedPortfolio.addedQuantity.coins.forEach((e, idx) => {
+      updatedPortfolio.addedQuantity.coins[idx].usd = portfolio.coins[idx].usd;
+      updatedPortfolio.addedQuantity.coins[idx].usd_24h_change =
         portfolio.coins[idx].usd_24h_change;
     });
-    setPortfolio(updatedPortfolio);
+    setPortfolio(updatedPortfolio.addedQuantity);
   }
 
   return (
@@ -58,6 +59,13 @@ export default function PortfolioDetailsItem({
         </DropdownButton>
       </th>
       <th>{(Number(coin.usd) * Number(coin.quantity)).toLocaleString('en')}</th>
+      <th><button onClick={()=> {
+        setModalShow(true)
+        setDeleteCoin({
+          portfolioId: portfolio._id,
+          coinId: coin.id,
+        })
+      }}>x</button></th>
     </tr>
   );
 }

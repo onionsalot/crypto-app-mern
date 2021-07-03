@@ -6,6 +6,10 @@ export function getAll() {
     return sendRequest(BASE_URL)
 }
 
+export function getFavs() {
+    return sendRequest(`${BASE_URL}/favs`)
+}
+
 export function getOne(id) {
     return sendRequest(`${BASE_URL}/${id}`)
 }
@@ -24,4 +28,8 @@ export function update(data, id) {
 
 export function deleteOne(id) {
     return sendRequest(`${BASE_URL}/delete/${id}`, 'DELETE')
+}
+
+export function deleteCoin(data) {
+    return sendRequest(`${BASE_URL}/deleteCoin/`, 'PUT', data)
 }
