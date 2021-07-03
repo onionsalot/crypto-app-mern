@@ -21,16 +21,15 @@ export default function PortfolioDetailsItem({
   }
 
   async function handleUpdate(e) {
-    console.log("bloop");
     e.preventDefault();
 
     const updatedPortfolio = await portfoliosAPI.addCoin(form, coin.id);
-    updatedPortfolio.coins.forEach((e, idx) => {
-      updatedPortfolio.coins[idx].usd = portfolio.coins[idx].usd;
-      updatedPortfolio.coins[idx].usd_24h_change =
+    updatedPortfolio.addedQuantity.coins.forEach((e, idx) => {
+      updatedPortfolio.addedQuantity.coins[idx].usd = portfolio.coins[idx].usd;
+      updatedPortfolio.addedQuantity.coins[idx].usd_24h_change =
         portfolio.coins[idx].usd_24h_change;
     });
-    setPortfolio(updatedPortfolio);
+    setPortfolio(updatedPortfolio.addedQuantity);
   }
 
   return (

@@ -14,7 +14,6 @@ export default function Index( {setLoading} ) {
 		async function getCoins() {
 			setLoading(true);
 			const coinList = await coinsAPI.getAll();
-			console.log('coinList is => ',coinList)
 			setCoins(coinList)
 			setLoading(false);
 		}

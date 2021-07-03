@@ -17,7 +17,6 @@ export default function NavBar({ user, setUser }) {
     async function getCoins() {
       const defaultList = await coinsAPI.getDefault();
       setDefaultOptions(defaultList);
-      console.log(defaultList);
       const searchList = await coinsAPI.getSearch();
       setOptions(searchList);
     }

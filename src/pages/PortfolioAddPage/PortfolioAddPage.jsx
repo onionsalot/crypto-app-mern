@@ -21,7 +21,6 @@ export default function PortfolioAddPage( {setLoading} ) {
         async function getPortfolios() {
             setLoading(true)
 			const portfolioList = await portfoliosAPI.getAll();
-			console.log('PortfolioList is => ',portfolioList)
             if (portfolioList.length > 0) {
                 const defaultPortfolio = portfolioList.filter((e)=>e.isDefault === true)
                 setForm({...form, id: defaultPortfolio[0]._id})
@@ -34,11 +33,9 @@ export default function PortfolioAddPage( {setLoading} ) {
 
     function handleChange(e) {
         setForm({...form, [e.target.name]: e.target.value})
-        console.log(form)
     }
 
     async function handleSubmit(e) {
-        console.log('bloop')
         e.preventDefault();
 
         const portfolioList = await portfoliosAPI.addCoin(form, id);
@@ -48,7 +45,6 @@ export default function PortfolioAddPage( {setLoading} ) {
             setMsg(<span className="toast-danger">ERROR removing portfolio</span>)
             setShow(true)
           }
-        console.log(portfolioList)
 
     }
 

@@ -19,13 +19,11 @@ export default function PortfolioPage( {setLoading} ) {
         async function getPortfolios() {
             setLoading(true);
             const portfolioList = await portfoliosAPI.getAll();
-            console.log('PortfolioList is => ',portfolioList)
             setPortfolios(portfolioList)
             const defaultIndex = portfolioList.findIndex((e)=>e.isDefault ===true)
             if (defaultIndex !== -1) {
               setIsDefault(portfolioList[defaultIndex]._id)
             }
-            console.log('defaultindex', defaultIndex)
             setLoading(false);
         }
         getPortfolios()
@@ -36,7 +34,6 @@ export default function PortfolioPage( {setLoading} ) {
         setForm({...form, [e.target.name]: e.target.value})
       }
     async function handleSubmit(e) {
-        console.log('bloop')
         e.preventDefault();
         setModalShow(false)
         const portfolioList = await portfoliosAPI.create(form);

@@ -14,7 +14,6 @@ export default function CoinDetailsPage( {setLoading} ) {
         async function getCoin() {
 			setLoading(true);
 			const details = await coinsAPI.getOne(id);
-			console.log('coinList is => ',details)
 			setCoin(details)
 			setLoading(false);
 		}

@@ -29,7 +29,6 @@ export default function PortfolioDetailsPage( {setLoading} ) {
   useEffect(() => {
     async function setLayout() {
       if (portfolio.coins !== undefined) {
-        console.log('blep')
         setCoins(
           portfolio.coins.length
             ? portfolio.coins.map((coin, idx) => 

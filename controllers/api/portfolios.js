@@ -31,7 +31,6 @@ async function index(req, res, next) {
 
 async function getOne(req, res, next) {
   const portfolio = await Portfolio.findById(req.params.id)
-  console.log(portfolio.user, req.user._id)
   if (String(portfolio.user) !== String(req.user._id)) {
     // check if current logged in user has access to this item..
     return res.json({error: "invalid user"})
@@ -59,7 +58,6 @@ async function create(req, res, next) {
   if (portfolio.length === 0) {
     data.isDefault = true
   }
-  console.log(data)
   const createdPortfolio = await Portfolio.create(data);
   res.json(createdPortfolio)
 }
@@ -86,7 +84,6 @@ async function addCoin(req, res, next) {
     const test = `coins.${cid}`
     const addedCoin = await Portfolio.findOneAndUpdate({_id: id, 'coins.id': {$ne: cid}}, {$push: {"coins": {"id": cid, "quantity":Number(req.body.quantity)}}},{ returnOriginal: false })
     const addedQuantity = await Portfolio.findOneAndUpdate({_id: id, "coins.id": cid}, {$set: {"coins.$.quantity": Number(req.body.quantity)}},{ returnOriginal: false })
-    console.log(addedQuantity.coins.find(e => e.id === cid))
     res.json({success:true, addedQuantity})
   } catch(err) {
     res.send(err)
@@ -97,7 +94,6 @@ async function deleteOne(req, res, next) {
   try{
     const id = req.params.id;
     const removedPortfolio = await Portfolio.findByIdAndRemove(id)
-    console.log('removed portfolio =>', removedPortfolio)
     res.json({ success: true, removedPortfolio })
   } catch(err) {
     res.send(err)
