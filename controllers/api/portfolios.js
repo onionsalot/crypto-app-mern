@@ -9,6 +9,7 @@ module.exports = {
   addCoin,
   getOne,
   deleteOne,
+  deleteCoin,
 };
 
 async function index(req, res, next) {
@@ -114,6 +115,18 @@ async function deleteOne(req, res, next) {
     const id = req.params.id;
     const removedPortfolio = await Portfolio.findByIdAndRemove(id)
     res.json({ success: true, removedPortfolio })
+  } catch(err) {
+    res.send(err)
+  }
+}
+
+async function deleteCoin(req, res, next) {
+  try{
+    const data = req.body
+    const removedCoin = await Portfolio.findByIdAndUpdate(
+      { _id: data.portfolioId }, 
+      { $pull: { 'coins': {"id": data.coinId} } }, {new : true});
+    res.json({ success: true, removedCoin })
   } catch(err) {
     res.send(err)
   }

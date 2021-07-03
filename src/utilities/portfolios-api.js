@@ -29,3 +29,7 @@ export function update(data, id) {
 export function deleteOne(id) {
     return sendRequest(`${BASE_URL}/delete/${id}`, 'DELETE')
 }
+
+export function deleteCoin(data) {
+    return sendRequest(`${BASE_URL}/deleteCoin/`, 'PUT', data)
+}

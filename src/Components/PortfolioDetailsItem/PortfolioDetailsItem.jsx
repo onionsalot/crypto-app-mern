@@ -10,6 +10,8 @@ export default function PortfolioDetailsItem({
   coin,
   portfolio,
   setPortfolio,
+  setModalShow,
+  setDeleteCoin,
 }) {
   const [form, setForm] = useState({
     id: portfolio._id,
@@ -57,6 +59,13 @@ export default function PortfolioDetailsItem({
         </DropdownButton>
       </th>
       <th>{(Number(coin.usd) * Number(coin.quantity)).toLocaleString('en')}</th>
+      <th><button onClick={()=> {
+        setModalShow(true)
+        setDeleteCoin({
+          portfolioId: portfolio._id,
+          coinId: coin.id,
+        })
+      }}>x</button></th>
     </tr>
   );
 }
