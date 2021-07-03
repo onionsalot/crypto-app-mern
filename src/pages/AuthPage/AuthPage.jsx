@@ -31,13 +31,12 @@ export default function AuthPage({ setUser }) {
 			<h3>AuthPage</h3>
 			{login? (
 				<p>No login credentials? <br/> 
-				<button className="no-button" onClick={()=>setLogin(!login)}>Register New Account</button> &nbsp;&nbsp; | &nbsp;&nbsp; <button className="no-button" onClick={handleDemo}>Login to Demo</button>
+					<button className="no-button" onClick={()=>setLogin(!login)}>Register New Account</button> &nbsp;&nbsp; | &nbsp;&nbsp;<button onClick={handleDemo}>Login to Demo</button>
+					<br />{error}	
 				</p>
 			):(
 				<p>Have an account?<br/> 
-					<form autoComplete="off" onSubmit={handleDemo} >
-						<button type="submit">Login</button> 
-					</form>
+					<button className="no-button" onClick={()=>setLogin(!login)}>Login</button> 
 					{error}	
 				</p>
 			)}
