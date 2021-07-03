@@ -12,7 +12,7 @@ export default function CoinListItem({ coin, portfolioCoins }) {
   const [isFav, setIsFav] = useState(false)
 
   useEffect(() =>{
-    if (portfolioCoins.length) {
+    if (portfolioCoins.length > 0) {
       const favCheck = portfolioCoins.includes(coin.id)
       setIsFav(favCheck)
     }

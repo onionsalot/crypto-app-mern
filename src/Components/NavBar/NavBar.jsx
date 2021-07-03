@@ -8,7 +8,6 @@ import * as coinsAPI from "../../utilities/coins-api";
 import "./NavBar.css";
 
 export default function NavBar({ user, setUser }) {
-  const [selectedOption, setSelectedOption] = useState(null);
   const [defaultOptions, setDefaultOptions] = useState([]);
   const [options, setOptions] = useState([]);
   let history = useHistory();

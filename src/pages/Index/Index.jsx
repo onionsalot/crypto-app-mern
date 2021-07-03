@@ -18,8 +18,9 @@ export default function Index( {setLoading, user} ) {
 			const coinList = await coinsAPI.getAll();
 			if (user) {
 				const portfolios = await portfolioAPI.getFavs();
-				console.log(portfolios)
-				setPortfolioCoins(portfolios.uniqueArray)
+				if (portfolios.success) {
+					setPortfolioCoins(portfolios.uniqueArray)
+				}
 			}
 			setCoins(coinList)
 			setLoading(false);

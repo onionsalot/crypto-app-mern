@@ -1,6 +1,5 @@
 import './PortfolioPage.css';
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import PortfolioList from '../../Components/PortfolioList/PortfolioList'
 import * as portfoliosAPI from '../../utilities/portfolios-api'
 import { Button } from 'react-bootstrap'
