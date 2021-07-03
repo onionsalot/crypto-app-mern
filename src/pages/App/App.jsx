@@ -40,11 +40,11 @@ export default function App() {
 					<ScrollToTop />
 					<Switch>
 						<Route exact path="/">
-							<Index setLoading={setLoading}/>
+							<Index setLoading={setLoading} user={user}/>
 							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/details/:id'>
-							<CoinDetailsPage setLoading={setLoading}/>
+							<CoinDetailsPage setLoading={setLoading} user={user}/>
 							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/about'>
@@ -72,11 +72,11 @@ export default function App() {
 					<ScrollToTop />
 					<Switch>
 						<Route exact path="/">
-							<Index setLoading={setLoading}/>
+							<Index setLoading={setLoading} user={user}/>
 							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/details/:id'>
-							<CoinDetailsPage setLoading={setLoading}/>
+							<CoinDetailsPage setLoading={setLoading} user={user}/>
 							{loading ? <Loading /> : null}
 						</Route>
 						<Route exact path='/about'>

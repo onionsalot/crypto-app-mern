@@ -3,6 +3,7 @@ const Coin = require("../../models/coin")
 
 module.exports = {
   index,
+  getFavs,
   create,
   update,
   addCoin,
@@ -27,6 +28,24 @@ async function index(req, res, next) {
         }))
   }
   res.json(portfolioList)
+}
+
+async function getFavs(req,res, next) {
+  try{
+    const portfolioList = await Portfolio.find({user: req.user._id});
+    const arr = []
+    portfolioList.forEach((portfolio, idx) =>
+      portfolio.coins.forEach((coin, idx) =>
+        arr.push(coin.id)))
+    const uniqueArray = [...new Set(arr)];//convert array of dupes to a set which implicitly removes dupes then convert back to array.
+    if (uniqueArray.length !== 0) {
+      res.json({success:true, uniqueArray})
+    } else {
+      res.json({success:false})
+    }
+  } catch(err) {
+    res.json(err)
+  }
 }
 
 async function getOne(req, res, next) {

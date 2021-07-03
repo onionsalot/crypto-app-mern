@@ -4,7 +4,7 @@ import "./CoinList.css";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-export default function CoinList({ coins }) {
+export default function CoinList({ coins, portfolioCoins }) {
   const top = useRef(null);
 
   const scrollToTop = () => {
@@ -12,7 +12,7 @@ export default function CoinList({ coins }) {
   };
 
   const coinItem = coins.map((coin, idx) => (
-    <CoinListItem key={idx} coin={coin} />
+    <CoinListItem key={idx} coin={coin} portfolioCoins={portfolioCoins}/>
   ));
 
   useEffect(() => {
