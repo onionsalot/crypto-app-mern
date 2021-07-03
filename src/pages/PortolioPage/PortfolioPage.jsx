@@ -37,6 +37,7 @@ export default function PortfolioPage( {setLoading} ) {
         e.preventDefault();
         setModalShow(false)
         const portfolioList = await portfoliosAPI.create(form);
+        setForm({name:""})
         setPortfolios([...portfolios, portfolioList])
       }
 
