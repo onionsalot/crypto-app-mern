@@ -42,7 +42,7 @@ export default function CoinListItem({ coin, portfolioCoins }) {
       </Large>
       <Mobile>
         <td className="coin-name head-col mob-view">
-          <div className="rank-icon"><Link to={fav}><img src={star} alt="fav" className="favicon"/></Link>{coin.rank}</div>
+          <div className="rank-icon"><Link to={fav}>{isFav ? <img src={star_light} alt="fav" className="favicon"/> : <img src={star} alt="fav" className="favicon"/>}</Link>{coin.rank}</div>
           <div className="coin-icon"><img src={coin.image} alt="coin" className="coinImage"/></div>  
           <div className="coin-R"><Link to={url}>{coin.name}</Link></div>
           <div className="ticker">&nbsp;{coin.ticker}&nbsp;</div>

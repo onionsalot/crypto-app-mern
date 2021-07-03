@@ -1,4 +1,4 @@
-# Coding Tutor
+# BootstrapMarketcap
 
 [Click here to launch app!](https://bootstrapmarketcap.herokuapp.com/)
 
