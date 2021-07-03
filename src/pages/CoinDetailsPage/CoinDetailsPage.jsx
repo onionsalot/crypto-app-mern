@@ -16,7 +16,6 @@ export default function CoinDetailsPage( {setLoading, user} ) {
 			const details = await coinsAPI.getOne(id);
             if (user) {
 				const portfolios = await portfolioAPI.getFavs();
-				console.log(portfolios)
 				setPortfolioCoins(portfolios.uniqueArray)
 			}
 			setCoin(details)
