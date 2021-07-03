@@ -2,12 +2,30 @@ import React from 'react';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import * as usersService from '../../utilities/users-service';
+
 
 export default function AuthPage({ setUser }) {
 	const [login, setLogin] = useState(true)
+	const [error, setError] = useState('');
 
-	function handleDemo(){}
+	async function handleDemo(evt) {
+		// Prevent form from being submitted to the server
+		evt.preventDefault();
+		try {
+			// The promise returned by the signUp service method
+			// will resolve to the user object included in the
+			// payload of the JSON Web Token (JWT)
+			const user = await usersService.login({
+				email: "demo@demo",
+				password: '1234567',
+			});
+			setUser(user);
+		} catch {
+			setError('Log In Failed - Try Again');
+		}
+	}
+
 	return (
 		<main>
 			<h3>AuthPage</h3>
@@ -17,7 +35,10 @@ export default function AuthPage({ setUser }) {
 				</p>
 			):(
 				<p>Have an account?<br/> 
-				<button className="no-button" onClick={()=>setLogin(!login)}>Login</button> 
+					<form autoComplete="off" onSubmit={handleDemo} >
+						<button type="submit">Login</button> 
+					</form>
+					{error}	
 				</p>
 			)}
 
