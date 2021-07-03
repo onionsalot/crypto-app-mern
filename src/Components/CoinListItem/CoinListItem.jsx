@@ -27,7 +27,7 @@ export default function CoinListItem({coin}) {
             <div className="coin-R"><Link to={url}><img src={coin.image} alt="coin" className="coinImage"/>{coin.name}</Link></div>
             
         </td>
-        <td> {coin.ticker} </td>
+        <td> <span className="ticker">{coin.ticker}</span> </td>
       </Large>
       <Mobile>
         <td className="coin-name head-col mob-view">

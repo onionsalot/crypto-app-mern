@@ -24,9 +24,14 @@
   padding-right: 5px;
 }
 
+.table-container tr{
+  height: 50px;
+}
+
 .head-col {
   width: 250px;
   padding: 0;
+  height: 50px;
 }
 
 .coin-name {
@@ -53,9 +58,13 @@
   padding-right: 5px;
   color: black;
   font-size: 14px;
+  align-self: center;
+  vertical-align: middle;
 }
 .coin-R {
   text-align: left;
+  align-self: center;
+  vertical-align: middle;
 }
 
 .favicon {
@@ -76,7 +85,14 @@
   color: red
 }
 
-@media (max-width: 550px) {
+.ticker {
+  background-color: rgb(224, 224, 224);
+  border: 1px solid rgb(224, 224, 224);
+  padding: 5px;
+  border-radius: 10%;
+}
+
+@media (max-width: 699px) {
 
   .mob-view {
     display: grid;
@@ -121,10 +137,9 @@
     border-radius: 10%;
   }
 
-  .table-container tr{
-    height: 50px;
+  .head-col {
+    height: auto;
   }
-
   /* .coin-R {
     vertical-align: middle;
     text-align: left;
