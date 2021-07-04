@@ -26,7 +26,7 @@ export default function CoinDetails({coin, portfolioCoins}) {
             <Row>
                 <Col><img src={image} alt="coin" /><h2><Link to={fav}>{isFav? <img src={star_light} alt="fav" className="favicon"/>:<img src={star} alt="fav" className="favicon"/>}</Link>{coin.name}<span className="smol">{coin.symbol}</span></h2></Col>
                 <Col>
-                    Current Price: <span className="b"><h5>${(priceDetails.current_price.usd).toLocaleString('en')}</h5></span> <br />
+                    Current Price: <span className="b"><h5>${priceDetails.current_price.usd < 1 ? priceDetails.current_price.usd : priceDetails.current_price.usd.toLocaleString('en', { minimumFractionDigits: 2 })}</h5></span> <br />
                     Last Hour: <span className={priceDetails.price_change_percentage_1h_in_currency.usd > 0 ? "green b":"red b"}>{priceDetails.price_change_percentage_1h_in_currency.usd ? (priceDetails.price_change_percentage_1h_in_currency.usd.toFixed(2)):(null)}
                     </span>&nbsp;%<br />
                     Last Day: <span className={priceDetails.price_change_percentage_24h_in_currency.usd > 0 ? "green b":"red b"}>{priceDetails.price_change_percentage_24h_in_currency.usd ? (priceDetails.price_change_percentage_24h_in_currency.usd.toFixed(2)):(null)}

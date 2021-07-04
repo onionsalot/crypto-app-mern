@@ -49,7 +49,7 @@ export default function CoinListItem({ coin, portfolioCoins }) {
             
         </td>
       </Mobile>
-        <td> {coin.price.toLocaleString()} </td>
+        <td> {Number(coin.price) < 1 ? coin.price.toLocaleString('en', { minimumFractionDigits: 6 }) : coin.price.toLocaleString('en', { minimumFractionDigits: 2 })} </td>
         <td> {coin.market_cap.toLocaleString()} </td>
         <td className={coin.price1h >= 0? "green": "red"}> {coin.price1h ? (coin.price1h.toFixed(2)): (null)} </td>
         <td className={coin.price24h >= 0? "green": "red"}> {coin.price24h ? (coin.price24h.toFixed(2)): (null)} </td>
